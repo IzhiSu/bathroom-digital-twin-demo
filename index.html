@@ -65,6 +65,17 @@
       .project-description p {
         font-size: 15px;
       }
+      
+      /* 新增：开发状态提示框样式 */
+      .dev-notice {
+        background-color: #e8f4fd; 
+        border-left: 4px solid #3498db; 
+        padding: 12px 16px;
+        margin-top: 24px;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #2c3e50;
+      }
     </style>
   </head>
   <body>
@@ -101,7 +112,12 @@
       <p>
         Use the on-screen UI buttons to trigger different motion scenarios. The "Complex Scenario" demonstrates a full sequence from walking to a potential fall, while individual buttons trigger specific motion.
       </p>
+
+      <div class="dev-notice">
+        <strong>🚧 Development Status:</strong> This demo represents an early-stage prototype for phase-based demonstration. Advanced kinematic data extraction, physics-based interactions, and extended analytical features are currently under active development.
+      </div>
     </div>
+    
     <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
