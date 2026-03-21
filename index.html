@@ -17,12 +17,12 @@
       
       /* 让 Unity 容器回到正常的网页排版流中，居中显示 */
       #unity-container.unity-desktop {
-        position: relative !important; /* 强制取消 Unity 默认的绝对定位 */
+        position: relative !important; 
         top: 0 !important;
         left: 0 !important;
-        transform: none !important;    /* 取消居中偏移 */
-        width: 960px !important;       /* 和画布尺寸保持一致 */
-        margin: 40px auto;             /* 上下留白，左右居中 */
+        transform: none !important;    
+        width: 960px !important;       
+        margin: 40px auto;             
         box-shadow: 0 8px 24px rgba(0,0,0,0.15);
         border-radius: 8px;
         background-color: #222;
@@ -30,8 +30,8 @@
 
       /* 学术介绍文本卡片的样式 */
       .project-description {
-        max-width: 900px;         /* 宽度略小于画布，显得紧凑 */
-        margin: 0 auto 60px auto; /* 居中，底部留白 */
+        max-width: 900px;         
+        margin: 0 auto 60px auto; 
         padding: 40px;
         background-color: #ffffff; 
         border-radius: 8px;        
@@ -66,7 +66,7 @@
         font-size: 15px;
       }
       
-      /* 新增：开发状态提示框样式 */
+      /* 开发状态提示框样式 */
       .dev-notice {
         background-color: #e8f4fd; 
         border-left: 4px solid #3498db; 
@@ -76,11 +76,21 @@
         font-size: 14px;
         color: #2c3e50;
       }
+
+      /* --- 替换左下角的 Unity WebGL Logo --- */
+      #unity-webgl-logo {
+        background-image: url('footer-logo.png') !important; /* 确保这张图片和 index.html 在同一个文件夹 */
+        width: 140px !important; 
+        height: 38px !important;
+        background-size: contain !important; 
+        background-repeat: no-repeat !important;
+        background-position: left center !important; 
+      }
     </style>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+      <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -115,18 +125,6 @@
 
       <div class="dev-notice">
         <strong>🚧 Development Status:</strong> This demo represents an early-stage prototype for phase-based demonstration. Advanced kinematic data extraction, physics-based interactions, and extended analytical features are currently under active development.
-      /* --- 替换左下角的 Unity WebGL Logo --- */
-      #unity-webgl-logo {
-        background-image: url('footer-logo.png') !important; /* 换成你实际的图片名字 */
-        
-        /* 默认大小，你可以根据你的 Logo 比例自己微调 */
-        width: 140px !important; 
-        height: 38px !important;
-        
-        background-size: contain !important; /* 保证图片不变形 */
-        background-repeat: no-repeat !important;
-        background-position: left center !important; /* 靠左居中对齐 */
-      }
       </div>
     </div>
     
