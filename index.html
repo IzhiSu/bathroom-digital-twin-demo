@@ -6,6 +6,60 @@
     <title>Unity WebGL Player | Bathroom_DigitalTwin</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    
+    <style>
+      body {
+        background-color: #f4f6f8; /* 浅灰偏蓝背景，显得干净专业 */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      /* 让 Unity 容器居中并加上一点阴影 */
+      #unity-container {
+        margin: 40px auto; 
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        border-radius: 8px;
+        overflow: hidden; /* 让边角圆润 */
+        background-color: #222;
+      }
+
+      /* 学术介绍文本卡片的样式 */
+      .project-description {
+        max-width: 900px;         /* 宽度略小于画布，显得紧凑 */
+        margin: 0 auto 60px auto; /* 居中，底部留白 */
+        padding: 40px;
+        background-color: #ffffff; 
+        border-radius: 8px;        
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+        color: #444444;
+        line-height: 1.6;
+      }
+
+      .project-description h2 {
+        color: #2c3e50;
+        border-bottom: 2px solid #eaeaea;
+        padding-bottom: 12px;
+        margin-top: 0;
+        font-size: 24px;
+      }
+
+      .project-description h3 {
+        color: #34495e;
+        margin-top: 24px;
+        font-size: 18px;
+      }
+
+      .project-description ul {
+        padding-left: 20px;
+      }
+
+      .project-description li {
+        margin-bottom: 10px;
+      }
+      
+      .project-description p {
+        font-size: 15px;
+      }
+    </style>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -23,8 +77,26 @@
         <div id="unity-build-title">Bathroom_DigitalTwin</div>
       </div>
     </div>
-    <script>
 
+    <div class="project-description">
+      <h2>Bathroom Digital Twin: Elderly Fall Risk Assessment</h2>
+      <p>
+        This interactive demo showcases a digital twin environment designed to analyze and mitigate indoor risks for older adults. By combining a precise building twin with a dynamic human twin, the system simulates complex fall kinematics within confined spaces.
+      </p>
+      
+      <h3>Key Capabilities</h3>
+      <ul>
+        <li><strong>Human-Building Interaction:</strong> Real-time mapping of human posture and fall dynamics against bathroom fixtures.</li>
+        <li><strong>Spatial Risk Analysis:</strong> Evaluates potential impact points (e.g., washbasins, bathtubs) to judge environmental safety.</li>
+        <li><strong>Kinematic Tracking:</strong> Tracks hip velocity, drop thresholds, and first contact timing to generate automated risk scores.</li>
+      </ul>
+      
+      <h3>How to Use</h3>
+      <p>
+        Use the on-screen UI buttons to trigger different motion scenarios. The "Complex Scenario" demonstrates a full sequence from walking to a potential fall, while individual buttons trigger specific kinematic datasets.
+      </p>
+    </div>
+    <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
@@ -32,12 +104,6 @@
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
 
-      // Shows a temporary message banner/ribbon for a few seconds, or
-      // a permanent error message on top of the canvas if type=='error'.
-      // If type=='warning', a yellow highlight color is used.
-      // Modify or remove this function to customize the visually presented
-      // way that non-critical warnings and error messages are presented to the
-      // user.
       function unityShowBanner(msg, type) {
         function updateBannerVisibility() {
           warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
@@ -69,40 +135,14 @@
         showBanner: unityShowBanner,
       };
 
-      // By default, Unity keeps WebGL canvas render target size matched with
-      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-      // Set this to false if you want to decouple this synchronization from
-      // happening inside the engine, and you would instead like to size up
-      // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
-
-      // If you would like all file writes inside Unity Application.persistentDataPath
-      // directory to automatically persist so that the contents are remembered when
-      // the user revisits the site the next time, uncomment the following line:
-      // config.autoSyncPersistentDataPath = true;
-      // This autosyncing is currently not the default behavior to avoid regressing
-      // existing user projects that might rely on the earlier manual
-      // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
-      // expected to change.
-
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-
         var meta = document.createElement('meta');
         meta.name = 'viewport';
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
         container.className = "unity-mobile";
         canvas.className = "unity-mobile";
-
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
-
-
       } else {
-        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-
         canvas.style.width = "960px";
         canvas.style.height = "600px";
       }
@@ -125,7 +165,6 @@
             };
 
       document.body.appendChild(script);
-
     </script>
   </body>
 </html>
