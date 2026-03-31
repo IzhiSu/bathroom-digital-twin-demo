@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Interview Data</title>
+  <title>Interview & Case Data | Bathroom Digital Twin</title>
   <style>
     body {
       background: #f4f6f8;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
+      color: #2c3e50;
     }
 
     .top-nav {
-      width: 960px;
+      width: 1100px;
+      max-width: calc(100% - 40px);
       margin: 24px auto 16px auto;
       display: flex;
       gap: 12px;
@@ -35,30 +37,380 @@
       border: 1px solid #d5dde5;
     }
 
+    .nav-tab.link:hover {
+      background-color: #dce6f0;
+    }
+
     .nav-tab.active {
       background-color: #2c3e50;
       color: white;
     }
 
-    .content {
-      max-width: 900px;
+    .container {
+      width: 1100px;
+      max-width: calc(100% - 40px);
       margin: 0 auto 60px auto;
-      padding: 40px;
+    }
+
+    .hero, .section {
       background: white;
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 24px;
+      border-bottom: 2px solid #eaeaea;
+      padding-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      line-height: 1.7;
+      font-size: 15px;
+      color: #44515c;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #5b6975;
+      margin-bottom: 0;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .workflow-step {
+      background: #eef3f8;
+      border: 1px solid #d8e1ea;
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      color: #2f3d4a;
+    }
+
+    .step-block {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    .step-text ul {
+      padding-left: 18px;
+      line-height: 1.7;
+      color: #44515c;
+      font-size: 15px;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .image-card {
+      border: 1px solid #e0e6ec;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fafbfd;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .caption {
+      padding: 10px 12px;
+      font-size: 13px;
+      color: #5b6975;
+      line-height: 1.5;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid #dbe3ea;
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef3f8;
+    }
+
+    .note {
+      background: #eef6ff;
+      border-left: 4px solid #3d7edb;
+      padding: 14px 16px;
+      border-radius: 6px;
+      margin-top: 18px;
+      font-size: 14px;
+      color: #36506b;
+    }
+
+    @media (max-width: 900px) {
+      .step-block {
+        grid-template-columns: 1fr;
+      }
+      .image-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
+
   <div class="top-nav">
     <a href="index.html" class="nav-tab link">Bathroom DT Demo</a>
     <span class="nav-tab active">Interview Data</span>
   </div>
 
-  <div class="content">
-    <h2>Interview Data and Preliminary Case Materials</h2>
-    <p>Here you can present bathroom photos, interview summaries, digital models, and other preliminary data.</p>
+  <div class="container">
+
+    <div class="hero">
+      <h1>Interview & Case Data</h1>
+      <p class="subtitle">
+        From field interview to environment digitization for the Bathroom Digital Twin framework
+      </p>
+
+      <div class="workflow">
+        <div class="workflow-step">Step 1<br>Case selection</div>
+        <div class="workflow-step">Step 2<br>Field interview</div>
+        <div class="workflow-step">Step 3<br>Raw data collection</div>
+        <div class="workflow-step">Step 4<br>Data preprocessing</div>
+        <div class="workflow-step">Step 5<br>Environment digitization</div>
+        <div class="workflow-step">Step 6<br>DT integration</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Overview</h2>
+      <p>
+        This page documents the step-by-step workflow used to collect, organize, and transform interview-based bathroom case data into a structured digital representation. The purpose of this process was not only to record a real bathroom environment, but also to generate a case-grounded spatial basis for the Bathroom Digital Twin framework.
+      </p>
+      <p>
+        The workflow combined field interview, contextual observation, image documentation, recording materials, and environment digitization outputs such as point cloud data and digital models.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Step 1. Case selection and interview setup</h2>
+      <div class="step-block">
+        <div class="step-text">
+          <p>
+            A real bathroom case was selected as the basis for early-stage investigation and prototype development. This step focused on defining the target environment, preparing the interview scope, and clarifying what kinds of data were needed for later digitization and safety-oriented analysis.
+          </p>
+          <ul>
+            <li>Selected a real bathroom environment as a representative case.</li>
+            <li>Defined interview goals around bathroom use, inconvenience, and safety-relevant interaction.</li>
+            <li>Planned data collection to include environmental images, recordings, and spatial reconstruction materials.</li>
+          </ul>
+        </div>
+        <div class="image-grid">
+          <div class="image-card">
+            <img src="assets/step1_case_photo.jpg" alt="Case overview">
+            <div class="caption">Representative bathroom case selected for field investigation.</div>
+          </div>
+          <div class="image-card">
+            <img src="assets/step1_setup.jpg" alt="Interview setup">
+            <div class="caption">Initial setup for interview and contextual documentation.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Step 2. Field interview and contextual documentation</h2>
+      <div class="step-block">
+        <div class="step-text">
+          <p>
+            Field interview and contextual observation were conducted to understand how the bathroom was used in practice and which spatial features might be related to difficulty, discomfort, or potential safety risk.
+          </p>
+          <ul>
+            <li>Conducted interview-based inquiry on bathroom use and experience.</li>
+            <li>Recorded observations related to movement constraints, wet zones, and object accessibility.</li>
+            <li>Captured environmental photographs to preserve fixture arrangement and local spatial conditions.</li>
+          </ul>
+          <div class="note">
+            This stage focused on linking lived experience with observable environmental conditions, rather than treating the bathroom only as a geometric model.
+          </div>
+        </div>
+        <div class="image-grid">
+          <div class="image-card">
+            <img src="assets/step2_env_photo_1.jpg" alt="Bathroom photo 1">
+            <div class="caption">Contextual photo documenting fixture layout and circulation space.</div>
+          </div>
+          <div class="image-card">
+            <img src="assets/step2_env_photo_2.jpg" alt="Bathroom photo 2">
+            <div class="caption">Example image showing local environmental conditions and risk-relevant features.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Step 3. Raw data collection</h2>
+      <p>
+        Multiple forms of raw data were collected to document the case from complementary perspectives. These materials formed the source dataset for later organization, interpretation, and environment digitization.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Data type</th>
+            <th>Example content</th>
+            <th>Role in workflow</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Image data</td>
+            <td>Bathroom overview photos, local fixture images, wet-area documentation</td>
+            <td>Visual documentation of the real environment and safety-relevant details</td>
+          </tr>
+          <tr>
+            <td>Recording data</td>
+            <td>Interview audio or contextual verbal records</td>
+            <td>Support interpretation of how the space is used and perceived</td>
+          </tr>
+          <tr>
+            <td>Point cloud / scan data</td>
+            <td>Spatial capture of the bathroom geometry</td>
+            <td>Provide the basis for reconstruction and digitization</td>
+          </tr>
+          <tr>
+            <td>Model-related files</td>
+            <td>Intermediate geometric or semantic reconstruction outputs</td>
+            <td>Bridge raw spatial data to DT-ready scene modeling</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Step 4. Data preprocessing and organization</h2>
+      <div class="step-block">
+        <div class="step-text">
+          <p>
+            After collection, the case materials were reorganized and processed according to data type. This step aimed to make the raw materials traceable, interpretable, and usable for downstream scene reconstruction.
+          </p>
+          <ul>
+            <li>Organized files into structured folders such as Image, Recording, and Building_Model.</li>
+            <li>Screened representative photographs and associated them with specific environmental features.</li>
+            <li>Indexed recordings and extracted key contextual information for later interpretation.</li>
+            <li>Prepared scan-derived data for subsequent cleaning, alignment, and reconstruction.</li>
+          </ul>
+        </div>
+        <div class="image-grid">
+          <div class="image-card">
+            <img src="assets/step4_file_structure.png" alt="File structure">
+            <div class="caption">Structured organization of case materials by data type.</div>
+          </div>
+          <div class="image-card">
+            <img src="assets/step4_preprocess.png" alt="Preprocessing">
+            <div class="caption">Example of preprocessing and organization before environment digitization.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Step 5. Environment digitization</h2>
+      <div class="step-block">
+        <div class="step-text">
+          <p>
+            The collected spatial data were further transformed into digital representations of the bathroom environment. This stage focused on converting the real scene into a structured digital basis that could later support scene understanding and interaction-aware analysis.
+          </p>
+          <ul>
+            <li>Prepared point cloud or scan-derived geometry for spatial reconstruction.</li>
+            <li>Generated digital model representations of the bathroom environment.</li>
+            <li>Identified key safety-relevant objects such as toilet, washbasin, shower/bathtub area, and other fixtures.</li>
+            <li>Built a scene representation suitable for later integration into the Bathroom DT prototype.</li>
+          </ul>
+        </div>
+        <div class="image-grid">
+          <div class="image-card">
+            <img src="assets/step5_pointcloud.png" alt="Point cloud">
+            <div class="caption">Point cloud or scan-derived representation of the bathroom environment.</div>
+          </div>
+          <div class="image-card">
+            <img src="assets/step5_model.png" alt="Digital model">
+            <div class="caption">Digitized bathroom model used as the basis for later DT scene construction.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Step 6. Integration into the Bathroom Digital Twin</h2>
+      <div class="step-block">
+        <div class="step-text">
+          <p>
+            The processed case data and digitized scene were used to support the construction of a bathroom-centered digital twin environment. At this stage, the focus was on creating a structured spatial basis for later human–building interaction mapping, scenario playback, and risk-oriented analysis.
+          </p>
+          <ul>
+            <li>Used digitized bathroom layout as the scene basis for the DT prototype.</li>
+            <li>Linked object-level spatial information to safety-relevant semantics.</li>
+            <li>Prepared the case for later behavior simulation, contact-event analysis, and fall-risk interpretation.</li>
+          </ul>
+          <div class="note">
+            The current page emphasizes the data and workflow foundation of the case. More advanced behavior playback, interaction logging, and risk analytics are demonstrated in the Bathroom DT demo page.
+          </div>
+        </div>
+        <div class="image-grid">
+          <div class="image-card">
+            <img src="assets/step6_dt_scene.png" alt="DT scene">
+            <div class="caption">Digitized case environment prepared for Bathroom DT integration.</div>
+          </div>
+          <div class="image-card">
+            <img src="assets/step6_semantic_scene.png" alt="Semantic scene">
+            <div class="caption">Scene representation supporting later interaction-aware analysis.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Key outputs of this workflow</h2>
+      <ul>
+        <li>A documented real bathroom case with contextual interview materials</li>
+        <li>Structured environmental image records</li>
+        <li>Organized recording and observation materials</li>
+        <li>Point cloud / scan-derived spatial data</li>
+        <li>A digitized bathroom model for DT-oriented scene construction</li>
+      </ul>
+    </div>
+
   </div>
 </body>
 </html>
