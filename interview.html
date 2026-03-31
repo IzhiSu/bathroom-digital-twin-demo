@@ -141,6 +141,12 @@
       height: 220px;
       object-fit: cover;
       display: block;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .image-card img:hover {
+      transform: scale(1.02);
     }
 
     .caption {
@@ -176,6 +182,37 @@
       margin-top: 18px;
       font-size: 14px;
       color: #36506b;
+    }
+
+    .image-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      box-sizing: border-box;
+    }
+
+    .image-modal img {
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+      background: white;
+    }
+
+    .image-modal .close-btn {
+      position: absolute;
+      top: 18px;
+      right: 28px;
+      font-size: 36px;
+      color: white;
+      cursor: pointer;
+      font-weight: 300;
+      line-height: 1;
     }
 
     @media (max-width: 900px) {
@@ -226,14 +263,14 @@
     <div class="section">
       <h2>Step 1. Case selection and interview setup</h2>
       <div class="step-text">
-  	<p>
-    		A real bathroom case was selected as the basis for early-stage investigation and prototype development. This step focused on defining the target environment, preparing the interview scope, and clarifying what kinds of data were needed for later digitization and safety-oriented analysis.
-  	</p>
-  	<ul>
-    		<li>Selected a real bathroom environment as a representative case.</li>
-    		<li>Defined interview goals around bathroom use, inconvenience, and safety-relevant interaction.</li>
-    		<li>Planned data collection to include environmental images, recordings, and spatial reconstruction materials.</li>
-  	</ul>
+        <p>
+          A real bathroom case was selected as the basis for early-stage investigation and prototype development. This step focused on defining the target environment, preparing the interview scope, and clarifying what kinds of data were needed for later digitization and safety-oriented analysis.
+        </p>
+        <ul>
+          <li>Selected a real bathroom environment as a representative case.</li>
+          <li>Defined interview goals around bathroom use, inconvenience, and safety-relevant interaction.</li>
+          <li>Planned data collection to include environmental images, recordings, and spatial reconstruction materials.</li>
+        </ul>
       </div>
     </div>
 
@@ -255,11 +292,11 @@
         </div>
         <div class="image-grid">
           <div class="image-card">
-            <img src="assets/step2_env_photo_1.png" alt="Bathroom photo 1">
+            <img src="assets/step2_env_photo_1.png" alt="Bathroom photo 1" onclick="openImage(this.src)">
             <div class="caption">Contextual photo documenting fixture layout and circulation space.</div>
           </div>
           <div class="image-card">
-            <img src="assets/step2_env_photo_2.jpg" alt="Bathroom photo 2">
+            <img src="assets/step2_env_photo_2.jpg" alt="Bathroom photo 2" onclick="openImage(this.src)">
             <div class="caption">Contextual photo documenting fixture layout and circulation space.</div>
           </div>
         </div>
@@ -321,12 +358,12 @@
         </div>
         <div class="image-grid">
           <div class="image-card">
-            <img src="assets/step4_file_structure.png" alt="File structure">
+            <img src="assets/step4_file_structure.png" alt="File structure" onclick="openImage(this.src)">
             <div class="caption">Structured organization of case materials by data type.</div>
           </div>
           <div class="image-card">
-            <img src="assets/step4_preprocess.png" alt="Preprocessing">
-            <div class="caption">Example of preprocessing and organization before environment digitization.</div>
+            <img src="assets/step4_preprocess.png" alt="Preprocessing" onclick="openImage(this.src)">
+            <div class="caption">Example of preprocessing data before environment digitization.</div>
           </div>
         </div>
       </div>
@@ -348,11 +385,11 @@
         </div>
         <div class="image-grid">
           <div class="image-card">
-            <img src="assets/step5_pointcloud.png" alt="Point cloud">
+            <img src="assets/step5_pointcloud.png" alt="Point cloud" onclick="openImage(this.src)">
             <div class="caption">Point cloud or scan-derived representation of the bathroom environment.</div>
           </div>
           <div class="image-card">
-            <img src="assets/step5_model.png" alt="Digital model">
+            <img src="assets/step5_model.png" alt="Digital model" onclick="openImage(this.src)">
             <div class="caption">Digitized bathroom model used as the basis for later DT scene construction.</div>
           </div>
         </div>
@@ -361,21 +398,20 @@
 
     <div class="section">
       <h2>Step 6. Integration into the Bathroom Digital Twin</h2>
-        <div class="step-text">
-          <p>
-            The processed case data and digitized scene were used to support the construction of a bathroom-centered digital twin environment. At this stage, the focus was on creating a structured spatial basis for later human–building interaction mapping, scenario playback, and risk-oriented analysis.
-          </p>
-          <ul>
-            <li>Used digitized bathroom layout as the scene basis for the DT prototype.</li>
-            <li>Linked object-level spatial information to safety-relevant semantics.</li>
-            <li>Prepared the case for later behavior simulation, contact-event analysis, and fall-risk interpretation.</li>
-          </ul>
-          <div class="note">
-      		<strong>Role in the DT workflow:</strong> this step links case documentation and environment digitization to the Bathroom DT prototype, enabling later behavior playback, contact-event interpretation, and risk-oriented human–building interaction analysis.
-    	  </div>
+      <div class="step-text">
+        <p>
+          The processed case data and digitized scene were used to support the construction of a bathroom-centered digital twin environment. At this stage, the focus was on creating a structured spatial basis for later human–building interaction mapping, scenario playback, and risk-oriented analysis.
+        </p>
+        <ul>
+          <li>Used digitized bathroom layout as the scene basis for the DT prototype.</li>
+          <li>Linked object-level spatial information to safety-relevant semantics.</li>
+          <li>Prepared the case for later behavior simulation, contact-event analysis, and fall-risk interpretation.</li>
+        </ul>
+        <div class="note">
+          <strong>Role in the DT workflow:</strong> this step links case documentation and environment digitization to the Bathroom DT prototype, enabling later behavior playback, contact-event interpretation, and risk-oriented human–building interaction analysis.
         </div>
+      </div>
     </div>
-
 
     <div class="section">
       <h2>Key outputs of this workflow</h2>
@@ -389,5 +425,21 @@
     </div>
 
   </div>
+
+  <div id="imageModal" class="image-modal" onclick="closeImage()">
+    <span class="close-btn" onclick="closeImage()">&times;</span>
+    <img id="modalImage" src="" alt="Expanded image">
+  </div>
+
+  <script>
+    function openImage(src) {
+      document.getElementById("modalImage").src = src;
+      document.getElementById("imageModal").style.display = "flex";
+    }
+
+    function closeImage() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+  </script>
 </body>
 </html>
