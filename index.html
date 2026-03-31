@@ -9,26 +9,58 @@
     
     <style>
       body {
-        background-color: #f4f6f8; /* 浅灰偏蓝背景，显得干净专业 */
+        background-color: #f4f6f8;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
         padding: 0;
       }
+
+      .top-nav {
+        width: 960px;
+        margin: 24px auto 16px auto;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .nav-tab {
+        display: inline-block;
+        padding: 10px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        transition: 0.2s ease;
+      }
+
+      .nav-tab.active {
+        background-color: #2c3e50;
+        color: #ffffff;
+        cursor: default;
+      }
+
+      .nav-tab.link {
+        background-color: #e9eef3;
+        color: #2c3e50;
+        border: 1px solid #d5dde5;
+      }
+
+      .nav-tab.link:hover {
+        background-color: #dce6f0;
+      }
       
-      /* 让 Unity 容器回到正常的网页排版流中，居中显示 */
       #unity-container.unity-desktop {
         position: relative !important; 
         top: 0 !important;
         left: 0 !important;
         transform: none !important;    
         width: 960px !important;       
-        margin: 40px auto;             
+        margin: 0 auto 40px auto;             
         box-shadow: 0 8px 24px rgba(0,0,0,0.15);
         border-radius: 8px;
         background-color: #222;
       }
 
-      /* 学术介绍文本卡片的样式 */
       .project-description {
         max-width: 900px;         
         margin: 0 auto 60px auto; 
@@ -66,7 +98,6 @@
         font-size: 15px;
       }
       
-      /* 开发状态提示框样式 */
       .dev-notice {
         background-color: #e8f4fd; 
         border-left: 4px solid #3498db; 
@@ -77,9 +108,8 @@
         color: #2c3e50;
       }
 
-      /* --- 替换左下角的 Unity WebGL Logo --- */
       #unity-webgl-logo {
-        background-image: url('footer-logo.png') !important; /* 确保这张图片和 index.html 在同一个文件夹 */
+        background-image: url('footer-logo.png') !important;
         width: 140px !important; 
         height: 38px !important;
         background-size: contain !important; 
@@ -88,7 +118,13 @@
       }
     </style>
   </head>
+
   <body>
+    <div class="top-nav">
+      <span class="nav-tab active">Bathroom DT Demo</span>
+      <a href="interview.html" class="nav-tab link">Interview Data</a>
+    </div>
+
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
       <div id="unity-loading-bar">
@@ -127,7 +163,7 @@
         <strong>🚧 Development Status:</strong> This demo represents an early-stage prototype for phase-based demonstration. Advanced kinematic data extraction, physics-based interactions, and extended analytical features are currently under active development.
       </div>
     </div>
-    
+
     <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
@@ -186,15 +222,15 @@
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
-              }).then((unityInstance) => {
-                loadingBar.style.display = "none";
-                fullscreenButton.onclick = () => {
-                  unityInstance.SetFullscreen(1);
-                };
-              }).catch((message) => {
-                alert(message);
-              });
-            };
+        }).then((unityInstance) => {
+          loadingBar.style.display = "none";
+          fullscreenButton.onclick = () => {
+            unityInstance.SetFullscreen(1);
+          };
+        }).catch((message) => {
+          alert(message);
+        });
+      };
 
       document.body.appendChild(script);
     </script>
