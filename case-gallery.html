@@ -283,7 +283,8 @@
 
       .floorplan-image {
         width: 100%;
-        max-height: 420px;
+        max-height: none;
+        height: auto;
         object-fit: contain;
         display: block;
         border-radius: 10px;
@@ -312,6 +313,66 @@
         border: 1px solid #d5dde5;
         box-sizing: border-box;
         background-color: #f8fafc;
+      }
+
+      .clickable-image {
+        cursor: zoom-in;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .clickable-image:hover {
+        transform: scale(1.01);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      }
+
+      .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.82);
+        align-items: center;
+        justify-content: center;
+        padding: 32px;
+        box-sizing: border-box;
+      }
+
+      .image-modal.open {
+        display: flex;
+      }
+
+      .image-modal-content {
+        max-width: min(1200px, 92vw);
+        max-height: 88vh;
+        width: auto;
+        height: auto;
+        display: block;
+        border-radius: 10px;
+        box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+        background: #ffffff;
+      }
+
+      .image-modal-close {
+        position: absolute;
+        top: 18px;
+        right: 24px;
+        font-size: 34px;
+        line-height: 1;
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: 700;
+        user-select: none;
+      }
+
+      .image-modal-caption {
+        position: absolute;
+        left: 50%;
+        bottom: 18px;
+        transform: translateX(-50%);
+        color: #ffffff;
+        font-size: 14px;
+        text-align: center;
+        max-width: 80vw;
       }
 
       .caption-list,
@@ -456,7 +517,7 @@
 
         <div class="subsection">
           <h3>Floor Plan</h3>
-          <img src="images/case1-floorplan.jpeg" alt="Case 1 floor plan" class="floorplan-image">
+          <img src="images/case1-floorplan.jpeg" alt="Case 1 floor plan" class="floorplan-image clickable-image">
           <ul class="caption-list">
             <li>Bathroom layout and fixture locations.</li>
           </ul>
@@ -467,11 +528,11 @@
           <div class="module-grid">
             <div class="module-box">
               <h4>Overall point cloud view</h4>
-              <img src="images/case1-pointcloud-overview.png" alt="Case 1 point cloud overview" class="floorplan-image">
+              <img src="images/case1-pointcloud-overview.png" alt="Case 1 point cloud overview" class="content-image clickable-image">
             </div>
             <div class="module-box">
               <h4>Local detail view</h4>
-              <img src="images/case1-pointcloud-detail.png" alt="Case 1 point cloud detail" class="content-image">
+              <img src="images/case1-pointcloud-detail.png" alt="Case 1 point cloud detail" class="content-image clickable-image">
             </div>
           </div>
         </div>
@@ -479,8 +540,8 @@
         <div class="subsection">
           <h3>Contextual Images</h3>
           <div class="placeholder-grid">
-            <img src="images/case1-image-a.jpg" alt="Case 1 contextual image A" class="thumb-image">
-            <img src="images/case1-image-b.jpg" alt="Case 1 contextual image A" class="thumb-image">
+            <img src="images/case1-image-a.jpg" alt="Case 1 contextual image A" class="thumb-image clickable-image">
+            <img src="images/case1-image-b.jpg" alt="Case 1 contextual image A" class="thumb-image clickable-image">
           </div>
         </div>
 
@@ -489,11 +550,11 @@
           <div class="module-grid">
             <div class="module-box">
               <h4>Unity overall scene</h4>
-              <img src="images/case1-unity-overview.png" alt="Case 1 Unity reconstruction overview" class="content-image">
+              <img src="images/case1-unity-overview.png" alt="Case 1 Unity reconstruction overview" class="content-image clickable-image">
             </div>
             <div class="module-box">
               <h4>Unity local semantic view</h4>
-              <img src="images/case1-unity-detail.png" alt="Case 1 Unity reconstruction detail" class="content-image">
+              <img src="images/case1-unity-detail.png" alt="Case 1 Unity reconstruction detail" class="content-image clickable-image">
             </div>
           </div>
         </div>
@@ -554,7 +615,7 @@
 
         <div class="subsection">
           <h3>Floor Plan</h3>
-          <img src="images/case2-floorplan.jpeg" alt="Case 2 floor plan" class="content-image">
+          <img src="images/case2-floorplan.jpeg" alt="Case 2 floor plan" class="floorplan-image clickable-image">
           <ul class="caption-list">
             <li>Bathroom layout and fixture locations.</li>
           </ul>
@@ -566,11 +627,11 @@
           <div class="module-grid">
             <div class="module-box">
               <h4>Overall point cloud view</h4>
-              <img src="images/case2-pointcloud-overview.png" alt="Case 2 point cloud overview" class="content-image">
+              <img src="images/case2-pointcloud-overview.png" alt="Case 2 point cloud overview" class="content-image clickable-image">
             </div>
             <div class="module-box">
               <h4>Local detail view</h4>
-              <img src="images/case2-pointcloud-detail.png" alt="Case 2 point cloud detail" class="content-image">
+              <img src="images/case2-pointcloud-detail.png" alt="Case 2 point cloud detail" class="content-image clickable-image">
             </div>
           </div>
         </div>
@@ -578,9 +639,9 @@
         <div class="subsection">
           <h3>Contextual Images</h3>
           <div class="placeholder-grid">
-            <img src="images/case2-image-a.jpeg" alt="Case 2 contextual image A" class="thumb-image">
-            <img src="images/case2-image-b.jpeg" alt="Case 2 contextual image B" class="thumb-image">
-            <img src="images/case2-image-c.jpeg" alt="Case 2 contextual image C" class="thumb-image">
+            <img src="images/case2-image-a.jpeg" alt="Case 2 contextual image A" class="thumb-image clickable-image">
+            <img src="images/case2-image-b.jpeg" alt="Case 2 contextual image B" class="thumb-image clickable-image">
+            <img src="images/case2-image-c.jpeg" alt="Case 2 contextual image C" class="thumb-image clickable-image">
           </div>
         </div>
 
@@ -589,11 +650,11 @@
           <div class="module-grid">
             <div class="module-box">
               <h4>Unity overall scene</h4>
-              <img src="images/case2-unity-overview.png" alt="Case 2 Unity reconstruction overview" class="content-image">
+              <img src="images/case2-unity-overview.png" alt="Case 2 Unity reconstruction overview" class="content-image clickable-image">
             </div>
             <div class="module-box">
               <h4>Unity local semantic view</h4>
-              <img src="images/case2-unity-detail.png" alt="Case 2 Unity reconstruction detail" class="content-image">
+              <img src="images/case2-unity-detail.png" alt="Case 2 Unity reconstruction detail" class="content-image clickable-image">
             </div>
           </div>
         </div>
@@ -611,6 +672,13 @@
     </div>
 
 
+
+    <div id="image-modal" class="image-modal">
+      <span id="image-modal-close" class="image-modal-close">&times;</span>
+      <img id="image-modal-img" class="image-modal-content" src="" alt="">
+      <div id="image-modal-caption" class="image-modal-caption"></div>
+    </div>
+
     <div class="footer-note">
       Bathroom Digital Twin Project — Case archive template for case-grounded environment digitization and Unity reconstruction.
     </div>
@@ -619,7 +687,6 @@
       document.querySelectorAll('.case-toggle').forEach(function(button) {
         button.addEventListener('click', function() {
           var card = button.closest('.case-card');
-          var content = card.querySelector('.case-content');
           var indicator = button.querySelector('.toggle-indicator');
           var isOpen = card.classList.contains('open');
 
@@ -633,6 +700,37 @@
             indicator.textContent = 'Collapse ▴';
           }
         });
+      });
+
+      var modal = document.getElementById('image-modal');
+      var modalImg = document.getElementById('image-modal-img');
+      var modalCaption = document.getElementById('image-modal-caption');
+      var modalClose = document.getElementById('image-modal-close');
+
+      document.querySelectorAll('.clickable-image').forEach(function(img) {
+        img.addEventListener('click', function(event) {
+          event.stopPropagation();
+          modal.classList.add('open');
+          modalImg.src = img.src;
+          modalImg.alt = img.alt || '';
+          modalCaption.textContent = img.alt || '';
+        });
+      });
+
+      modalClose.addEventListener('click', function() {
+        modal.classList.remove('open');
+      });
+
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          modal.classList.remove('open');
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          modal.classList.remove('open');
+        }
       });
     </script>
   </body>
