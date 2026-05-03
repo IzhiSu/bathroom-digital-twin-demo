@@ -3,172 +3,448 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bathroom Digital Twin | Demo</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    
+
     <style>
+      :root {
+        --bg: #f4f7fb;
+        --panel: #ffffff;
+        --panel-soft: #f8fafc;
+        --ink: #243241;
+        --muted: #5f6f80;
+        --line: #dfe7ef;
+        --line-soft: #edf2f7;
+        --accent: #2f6f8f;
+        --accent-dark: #23495d;
+        --accent-soft: #e8f4f8;
+        --warning-soft: #fff7e8;
+        --warning-line: #e4b45a;
+        --shadow: 0 14px 36px rgba(31, 50, 70, 0.10);
+        --shadow-soft: 0 8px 22px rgba(31, 50, 70, 0.08);
+        --radius-lg: 18px;
+        --radius-md: 12px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
-        background-color: #f4f6f8;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
         padding: 0;
+        background:
+          radial-gradient(circle at top left, rgba(47, 111, 143, 0.15), transparent 30%),
+          radial-gradient(circle at top right, rgba(44, 62, 80, 0.10), transparent 28%),
+          linear-gradient(180deg, #f6f9fc 0%, var(--bg) 45%, #eef3f8 100%);
+        color: var(--ink);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
 
       .top-nav {
-        width: 960px;
-        margin: 24px auto 16px auto;
+        width: 1040px;
+        max-width: calc(100% - 40px);
+        margin: 24px auto 18px auto;
+        padding: 10px;
         display: flex;
-        gap: 12px;
+        gap: 10px;
         align-items: center;
+        flex-wrap: wrap;
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(223, 231, 239, 0.9);
+        border-radius: 16px;
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(10px);
       }
 
       .nav-tab {
         display: inline-block;
         padding: 10px 18px;
-        border-radius: 8px;
+        border-radius: 10px;
         text-decoration: none;
         font-size: 15px;
-        font-weight: 600;
+        font-weight: 650;
         transition: 0.2s ease;
       }
 
       .nav-tab.active {
-        background-color: #2c3e50;
+        background: linear-gradient(135deg, #243241, #2f6f8f);
         color: #ffffff;
         cursor: default;
+        box-shadow: 0 6px 16px rgba(47, 111, 143, 0.22);
       }
 
       .nav-tab.link {
-        background-color: #e9eef3;
+        background-color: #edf3f8;
         color: #2c3e50;
-        border: 1px solid #d5dde5;
+        border: 1px solid #dbe5ed;
       }
 
       .nav-tab.link:hover {
-        background-color: #dce6f0;
+        background-color: #e1edf5;
+        transform: translateY(-1px);
       }
-      
+
+      .hero-section,
+      .demo-panel,
+      .project-description {
+        width: 1040px;
+        max-width: calc(100% - 40px);
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-section {
+        margin-top: 14px;
+        margin-bottom: 26px;
+        padding: 38px 42px;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 252, 255, 0.94)),
+          linear-gradient(135deg, rgba(47,111,143,0.10), transparent);
+        border: 1px solid rgba(223, 231, 239, 0.95);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+        gap: 30px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 14px 0;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background-color: var(--accent-soft);
+        color: var(--accent-dark);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .hero-section h1 {
+        margin: 0;
+        color: var(--ink);
+        font-size: clamp(32px, 4vw, 48px);
+        line-height: 1.12;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-lead {
+        max-width: 680px;
+        margin: 18px 0 0 0;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.75;
+        text-align: justify;
+        text-align-last: left;
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .hero-tag {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background-color: #ffffff;
+        border: 1px solid var(--line);
+        color: #405163;
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .mini-architecture {
+        padding: 18px;
+        border-radius: 16px;
+        background-color: #ffffff;
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .mini-architecture h3 {
+        margin: 0 0 14px 0;
+        color: var(--ink);
+        font-size: 17px;
+      }
+
+      .mini-step {
+        position: relative;
+        padding: 12px 14px 12px 42px;
+        margin-bottom: 10px;
+        border-radius: 12px;
+        background-color: var(--panel-soft);
+        border: 1px solid var(--line-soft);
+        color: #435466;
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .mini-step:last-child {
+        margin-bottom: 0;
+      }
+
+      .mini-step::before {
+        content: attr(data-step);
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--accent);
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .demo-panel {
+        margin-bottom: 34px;
+      }
+
+      .section-kicker {
+        margin: 0 0 12px 0;
+        color: var(--accent-dark);
+        font-size: 13px;
+        font-weight: 750;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
       #unity-container.unity-desktop {
-        position: relative !important; 
+        position: relative !important;
         top: 0 !important;
         left: 0 !important;
-        transform: none !important;    
-        width: 960px !important;       
-        margin: 0 auto 40px auto;             
-        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-        border-radius: 8px;
+        transform: none !important;
+        width: 960px !important;
+        max-width: 100% !important;
+        margin: 0 auto 0 auto;
+        box-shadow: 0 18px 44px rgba(20, 35, 50, 0.22);
+        border-radius: 16px;
+        overflow: hidden;
         background-color: #222;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+      }
+
+      #unity-canvas {
+        max-width: 100%;
       }
 
       .project-description {
-        max-width: 900px;         
-        margin: 0 auto 60px auto; 
-        padding: 40px;
-        background-color: #ffffff; 
-        border-radius: 8px;        
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+        margin-bottom: 70px;
+        padding: 42px;
+        background-color: var(--panel);
+        border: 1px solid rgba(223, 231, 239, 0.95);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
         color: #444444;
-        line-height: 1.6;
+        line-height: 1.65;
       }
 
       .project-description h2 {
-        color: #2c3e50;
-        border-bottom: 2px solid #eaeaea;
-        padding-bottom: 12px;
-        margin-top: 0;
-        font-size: 24px;
+        margin: 0 0 12px 0;
+        padding-bottom: 14px;
+        color: var(--ink);
+        border-bottom: 2px solid var(--line-soft);
+        font-size: 27px;
+        letter-spacing: -0.02em;
       }
 
       .project-description h3 {
+        margin-top: 0;
         color: #34495e;
-        margin-top: 24px;
         font-size: 18px;
-      }
-
-      .project-description ul {
-        padding-left: 20px;
-      }
-
-      .project-description li {
-        margin-bottom: 10px;
-      }
-      
-      .project-description p {
-        font-size: 15px;
       }
 
       .project-description p,
       .project-description li,
       .purpose-card p,
+      .capability-card p,
       .scope-note,
       .dev-notice {
+        font-size: 15px;
         text-align: justify;
         text-align-last: left;
         text-justify: inter-word;
       }
-      
-      .dev-notice {
-        background-color: #e8f4fd; 
-        border-left: 4px solid #3498db; 
-        padding: 12px 16px;
-        margin-top: 24px;
-        border-radius: 4px;
-        font-size: 14px;
-        color: #2c3e50;
+
+      .lead-block {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin: 24px 0 30px 0;
       }
 
+      .evidence-card {
+        padding: 18px;
+        border-radius: 14px;
+        background: linear-gradient(180deg, #ffffff, #f8fafc);
+        border: 1px solid var(--line);
+      }
 
+      .evidence-card span {
+        display: inline-flex;
+        width: 30px;
+        height: 30px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        border-radius: 10px;
+        background-color: var(--accent-soft);
+        color: var(--accent-dark);
+        font-weight: 800;
+      }
 
-      .purpose-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-        margin: 24px 0;
+      .evidence-card h3 {
+        margin: 0 0 8px 0;
+        font-size: 16px;
+      }
+
+      .evidence-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .purpose-card,
+      .scope-note,
+      .dev-notice {
+        border-radius: 14px;
+        padding: 18px 20px;
       }
 
       .purpose-card {
-        background-color: #f8fafc;
-        border: 1px solid #e3e9ef;
-        border-radius: 8px;
-        padding: 18px;
-      }
-
-      .purpose-card h3 {
-        margin-top: 0;
+        margin: 12px 0 30px 0;
+        background-color: var(--accent-soft);
+        border: 1px solid #cfe4ec;
+        color: #2d4d5f;
       }
 
       .purpose-card p {
-        margin-bottom: 0;
+        margin: 0;
       }
 
-      .significance-list li {
-        margin-bottom: 12px;
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin: 14px 0 30px 0;
+      }
+
+      .significance-card,
+      .capability-card {
+        padding: 18px;
+        border-radius: 14px;
+        background-color: var(--panel-soft);
+        border: 1px solid var(--line);
+      }
+
+      .significance-card h3,
+      .capability-card h3 {
+        margin: 0 0 10px 0;
+        font-size: 16px;
+        color: var(--ink);
+      }
+
+      .significance-card p,
+      .capability-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .capability-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin: 14px 0 30px 0;
       }
 
       .scope-note {
+        margin: 24px 0 30px 0;
         background-color: #f8fafc;
-        border: 1px solid #e3e9ef;
-        border-radius: 8px;
-        padding: 14px 16px;
-        margin: 24px 0;
-        font-size: 14px;
+        border: 1px solid var(--line);
         color: #2c3e50;
       }
 
-      @media (max-width: 720px) {
-        .purpose-grid {
-          grid-template-columns: 1fr;
-        }
+      .usage-status-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      .usage-card {
+        padding: 18px 20px;
+        border-radius: 14px;
+        background-color: #ffffff;
+        border: 1px solid var(--line);
+      }
+
+      .usage-card h3 {
+        margin-bottom: 8px;
+      }
+
+      .usage-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .dev-notice {
+        margin: 0;
+        background-color: var(--warning-soft);
+        border: 1px solid #f0d8a8;
+        border-left: 4px solid var(--warning-line);
+        color: #624c1c;
       }
 
       #unity-webgl-logo {
         background-image: url('footer-logo.png') !important;
-        width: 140px !important; 
+        width: 140px !important;
         height: 38px !important;
-        background-size: contain !important; 
+        background-size: contain !important;
         background-repeat: no-repeat !important;
-        background-position: left center !important; 
+        background-position: left center !important;
+      }
+
+      @media (max-width: 920px) {
+        .hero-layout,
+        .lead-block,
+        .card-grid,
+        .capability-grid,
+        .usage-status-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-section,
+        .project-description {
+          padding: 30px 24px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .top-nav,
+        .hero-section,
+        .demo-panel,
+        .project-description {
+          max-width: calc(100% - 24px);
+        }
+
+        .nav-tab {
+          flex: 1 1 auto;
+          text-align: center;
+        }
       }
     </style>
   </head>
@@ -180,65 +456,136 @@
       <a href="case-gallery.html" class="nav-tab link">Case Gallery</a>
     </div>
 
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
+    <section class="hero-section">
+      <div class="hero-layout">
+        <div>
+          <div class="eyebrow">Bathroom-centered Human–Building Digital Twin</div>
+          <h1>Interaction-aware indoor safety analysis for bathroom environments</h1>
+          <p class="hero-lead">
+            This demo presents an early-stage digital twin framework that connects bathroom geometry,
+            human motion, and body–object interaction evidence in one interpretable environment.
+          </p>
+        </div>
+
+        <aside class="mini-architecture" aria-label="Framework summary">
+          <h3>Framework logic</h3>
+          <div class="mini-step" data-step="1">Digitized bathroom scene based on spatial and semantic evidence.</div>
+          <div class="mini-step" data-step="2">Human motion process represented as skeleton-based movement.</div>
+          <div class="mini-step" data-step="3">Interaction events interpreted through contact, location, and risk context.</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="demo-panel">
+      <p class="section-kicker">Interactive WebGL Prototype</p>
+      <div id="unity-container" class="unity-desktop">
+        <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
+        <div id="unity-loading-bar">
+          <div id="unity-logo"></div>
+          <div id="unity-progress-bar-empty">
+            <div id="unity-progress-bar-full"></div>
+          </div>
+        </div>
+        <div id="unity-warning"> </div>
+        <div id="unity-footer">
+          <div id="unity-webgl-logo"></div>
+          <div id="unity-fullscreen-button"></div>
+          <div id="unity-build-title">Bathroom_DigitalTwin</div>
         </div>
       </div>
-      <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">Bathroom_DigitalTwin</div>
-      </div>
-    </div>
+    </section>
 
     <div class="project-description">
       <h2>Project Purpose and Significance</h2>
       <p>
-        This project develops a bathroom-centered human–building digital twin for interaction-aware indoor safety analysis. The core purpose is to connect three types of evidence in one interpretable environment: the physical bathroom layout, the dynamic human motion process, and the contact or near-contact events between the body and surrounding fixtures.
+        This project develops a bathroom-centered human–building digital twin for interaction-aware indoor safety analysis.
+        The core purpose is to connect three types of evidence in one interpretable environment: the physical bathroom layout,
+        the dynamic human motion process, and the contact or near-contact events between the body and surrounding fixtures.
       </p>
       <p>
-        Rather than treating the bathroom only as a static 3D model, the project uses the digital twin as a spatial reasoning platform. It supports the analysis of where risky interactions occur, which objects are involved, and how human motion patterns relate to environmental constraints.
+        Rather than treating the bathroom only as a static 3D model, the project uses the digital twin as a spatial reasoning platform.
+        It supports the analysis of where risky interactions occur, which objects are involved, and how human motion patterns relate
+        to environmental constraints.
       </p>
+
+      <div class="lead-block">
+        <div class="evidence-card">
+          <span>1</span>
+          <h3>Bathroom layout</h3>
+          <p>Spatial layout, fixture arrangement, wet zones, circulation constraints, and object locations.</p>
+        </div>
+        <div class="evidence-card">
+          <span>2</span>
+          <h3>Human motion</h3>
+          <p>Skeleton-based movement, posture change, trajectory, velocity, and fall-related kinematics.</p>
+        </div>
+        <div class="evidence-card">
+          <span>3</span>
+          <h3>Interaction events</h3>
+          <p>Contact timing, impact location, involved object, and risk-relevant spatial interpretation.</p>
+        </div>
+      </div>
 
       <h3>Why integrate with a DT?</h3>
       <div class="purpose-card">
-        <p>Digital twin integration allows case materials to become an analyzable environment where human motion, object locations, and contact events can be organized and interpreted together.</p>
+        <p>
+          Digital twin integration allows case materials to become an analyzable environment where human motion, object locations,
+          and contact events can be organized and interpreted together.
+        </p>
       </div>
 
       <h3>Why this project matters</h3>
-      <ul class="significance-list">
-        <li><strong>From geometry to interaction:</strong> The project moves beyond simple environment visualization by linking spatial layout with human motion, body–object contact, and safety-relevant event records.</li>
-        <li><strong>From generic fall detection to spatial interpretation:</strong> The system does not only identify that a risky motion may occur; it also helps interpret where it occurs and which bathroom objects may contribute to impact or obstruction.</li>
-        <li><strong>From prototype demonstration to design evidence:</strong> The resulting DT environment can support later comparison of bathroom layouts, fixture arrangements, and intervention strategies before physical renovation or deployment.</li>
-      </ul>
+      <div class="card-grid">
+        <div class="significance-card">
+          <h3>From geometry to interaction</h3>
+          <p>The project moves beyond environment visualization by linking spatial layout with human motion, body–object contact, and safety-relevant event records.</p>
+        </div>
+        <div class="significance-card">
+          <h3>From detection to interpretation</h3>
+          <p>The system does not only identify that a risky motion may occur; it also helps interpret where it occurs and which bathroom objects may contribute to impact or obstruction.</p>
+        </div>
+        <div class="significance-card">
+          <h3>From prototype to design evidence</h3>
+          <p>The DT environment can support later comparison of bathroom layouts, fixture arrangements, and intervention strategies before physical renovation or deployment.</p>
+        </div>
+      </div>
 
       <div class="scope-note">
         <strong>Project positioning:</strong> This is an early-stage research prototype. It should be understood as a framework for human–building interaction representation and indoor safety analysis, not as a finished clinical fall-prediction product or a complete smart-home deployment system.
       </div>
 
       <h3>Key Capabilities</h3>
-      <ul>
-        <li><strong>Human–building interaction mapping:</strong> Maps human posture and motion trajectories against bathroom fixtures and spatial zones.</li>
-        <li><strong>Spatial risk interpretation:</strong> Identifies potential impact locations and object-level interaction points, such as washbasin, toilet, bathtub, wall, or floor areas.</li>
-        <li><strong>Kinematic and event tracking:</strong> Supports the extraction of motion-related indicators such as body position, velocity, drop process, first-contact timing, and contact sequence.</li>
-        <li><strong>Case-grounded DT construction:</strong> Links field case documentation and environment digitization with a reusable digital twin scene for later analysis.</li>
-      </ul>
-      
-      <h3>How to Use</h3>
-      <p>
-        Use the on-screen UI buttons to trigger different motion scenarios. The "Complex Scenario" demonstrates a full sequence from walking to a potential fall, while the individual buttons trigger specific motion states.
-      </p>
+      <div class="capability-grid">
+        <div class="capability-card">
+          <h3>Human–building interaction mapping</h3>
+          <p>Maps human posture and motion trajectories against bathroom fixtures and spatial zones.</p>
+        </div>
+        <div class="capability-card">
+          <h3>Spatial risk interpretation</h3>
+          <p>Identifies potential impact locations and object-level interaction points, such as washbasin, toilet, bathtub, wall, or floor areas.</p>
+        </div>
+        <div class="capability-card">
+          <h3>Kinematic and event tracking</h3>
+          <p>Supports motion-related indicators such as body position, velocity, drop process, first-contact timing, and contact sequence.</p>
+        </div>
+        <div class="capability-card">
+          <h3>Case-grounded DT construction</h3>
+          <p>Links field case documentation and environment digitization with a reusable digital twin scene for later analysis.</p>
+        </div>
+      </div>
 
-      <div class="dev-notice">
-        <strong>Development status:</strong> This demo represents an early-stage prototype for phase-based demonstration. Advanced kinematic data extraction, physics-based interaction, multi-case comparison, and extended analytical features are currently under development.
+      <div class="usage-status-grid">
+        <div class="usage-card">
+          <h3>How to Use</h3>
+          <p>
+            Use the on-screen UI buttons to trigger different motion scenarios. The "Complex Scenario" demonstrates a full sequence from walking to a potential fall, while the individual buttons trigger specific motion states.
+          </p>
+        </div>
+        <div class="dev-notice">
+          <strong>Development status:</strong> This demo represents an early-stage prototype for phase-based demonstration. Advanced kinematic data extraction, physics-based interaction, multi-case comparison, and extended analytical features are currently under development.
+        </div>
       </div>
     </div>
-
     <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
@@ -309,5 +656,6 @@
 
       document.body.appendChild(script);
     </script>
+
   </body>
 </html>

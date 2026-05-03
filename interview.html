@@ -5,122 +5,222 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Case Data | Bathroom Digital Twin</title>
   <style>
+    :root {
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --panel-soft: #f8fafc;
+      --ink: #243241;
+      --muted: #5f6f80;
+      --line: #dfe7ef;
+      --line-soft: #edf2f7;
+      --accent: #2f6f8f;
+      --accent-dark: #23495d;
+      --accent-soft: #e8f4f8;
+      --shadow: 0 14px 36px rgba(31, 50, 70, 0.10);
+      --shadow-soft: 0 8px 22px rgba(31, 50, 70, 0.08);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background: #f4f6f8;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      color: #2c3e50;
+      background:
+        radial-gradient(circle at top left, rgba(47, 111, 143, 0.15), transparent 30%),
+        radial-gradient(circle at top right, rgba(44, 62, 80, 0.10), transparent 28%),
+        linear-gradient(180deg, #f6f9fc 0%, var(--bg) 45%, #eef3f8 100%);
+      color: var(--ink);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .top-nav {
-      width: 1100px;
+      width: 1080px;
       max-width: calc(100% - 40px);
-      margin: 24px auto 16px auto;
+      margin: 24px auto 18px auto;
+      padding: 10px;
       display: flex;
-      gap: 12px;
+      gap: 10px;
       align-items: center;
+      flex-wrap: wrap;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(223, 231, 239, 0.9);
+      border-radius: 16px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
     }
 
     .nav-tab {
       display: inline-block;
       padding: 10px 18px;
-      border-radius: 8px;
+      border-radius: 10px;
       text-decoration: none;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 650;
+      transition: 0.2s ease;
     }
 
     .nav-tab.link {
-      background-color: #e9eef3;
+      background-color: #edf3f8;
       color: #2c3e50;
-      border: 1px solid #d5dde5;
+      border: 1px solid #dbe5ed;
     }
 
     .nav-tab.link:hover {
-      background-color: #dce6f0;
+      background-color: #e1edf5;
+      transform: translateY(-1px);
     }
 
     .nav-tab.active {
-      background-color: #2c3e50;
-      color: white;
+      background: linear-gradient(135deg, #243241, #2f6f8f);
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(47, 111, 143, 0.22);
     }
 
     .container {
-      width: 1100px;
+      width: 1080px;
       max-width: calc(100% - 40px);
-      margin: 0 auto 60px auto;
+      margin: 0 auto 70px auto;
     }
 
-    .hero, .section {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 32px;
-      margin-bottom: 24px;
+    .hero,
+    .section {
+      background-color: var(--panel);
+      border: 1px solid rgba(223, 231, 239, 0.95);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 38px 42px;
+      margin-bottom: 28px;
+    }
+
+    .hero {
+      margin-top: 14px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 252, 255, 0.94)),
+        linear-gradient(135deg, rgba(47,111,143,0.10), transparent);
+    }
+
+    .hero::before {
+      content: "Case workflow for bathroom digital twin construction";
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background-color: var(--accent-soft);
+      color: var(--accent-dark);
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: 0.02em;
     }
 
     h1 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 32px;
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(32px, 4vw, 46px);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
     }
 
     h2 {
-      margin-top: 0;
-      font-size: 24px;
-      border-bottom: 2px solid #eaeaea;
-      padding-bottom: 10px;
+      margin: 0 0 18px 0;
+      padding-bottom: 14px;
+      color: var(--ink);
+      border-bottom: 2px solid var(--line-soft);
+      font-size: 25px;
+      letter-spacing: -0.02em;
     }
 
     h3 {
-      font-size: 20px;
-      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: 19px;
+      margin-bottom: 10px;
     }
 
-    p {
+    p,
+    li,
+    td,
+    .note,
+    .caption {
+      color: var(--muted);
       line-height: 1.7;
       font-size: 15px;
-      color: #44515c;
+      text-align: justify;
+      text-align-last: left;
+      text-justify: inter-word;
     }
 
     .subtitle {
+      max-width: 780px;
+      margin: 18px 0 0 0;
       font-size: 16px;
-      color: #5b6975;
-      margin-bottom: 0;
+      color: var(--muted);
+      line-height: 1.75;
     }
 
     .workflow {
+      counter-reset: workflow;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 14px;
-      margin-top: 20px;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 26px;
     }
 
     .workflow-step {
-      background: #eef3f8;
-      border: 1px solid #d8e1ea;
-      border-radius: 8px;
-      padding: 14px;
-      font-size: 14px;
-      font-weight: 600;
+      counter-increment: workflow;
+      position: relative;
+      min-height: 112px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: linear-gradient(180deg, #ffffff, var(--panel-soft));
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 46px 14px 14px 14px;
+      color: #405163;
+      font-size: 13px;
+      font-weight: 700;
       text-align: center;
-      color: #2f3d4a;
+      line-height: 1.45;
+      box-shadow: 0 4px 14px rgba(31, 50, 70, 0.04);
+    }
+
+    .workflow-step::before {
+      content: counter(workflow);
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--accent);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 800;
     }
 
     .step-block {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1.08fr 0.92fr;
       gap: 24px;
       align-items: start;
       margin-top: 18px;
     }
 
     .step-text ul {
-      padding-left: 18px;
-      line-height: 1.7;
-      color: #44515c;
-      font-size: 15px;
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+
+    .step-text li,
+    .section > ul li {
+      margin-bottom: 8px;
     }
 
     .image-grid {
@@ -130,10 +230,11 @@
     }
 
     .image-card {
-      border: 1px solid #e0e6ec;
-      border-radius: 8px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
       overflow: hidden;
-      background: #fafbfd;
+      background: var(--panel-soft);
+      box-shadow: 0 6px 16px rgba(31, 50, 70, 0.06);
     }
 
     .image-card img {
@@ -142,46 +243,66 @@
       object-fit: cover;
       display: block;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, filter 0.2s ease;
     }
 
     .image-card img:hover {
-      transform: scale(1.02);
+      transform: scale(1.025);
+      filter: saturate(1.05);
     }
 
     .caption {
-      padding: 10px 12px;
+      padding: 11px 13px;
       font-size: 13px;
       color: #5b6975;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     table {
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 18px;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 20px;
       font-size: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #ffffff;
     }
 
-    th, td {
-      border: 1px solid #dbe3ea;
-      padding: 12px;
-      text-align: left;
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      padding: 14px;
       vertical-align: top;
     }
 
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: 0;
+    }
+
     th {
-      background: #eef3f8;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-weight: 750;
+      text-align: left;
     }
 
     .note {
-      background: #eef6ff;
-      border-left: 4px solid #3d7edb;
+      background-color: var(--accent-soft);
+      border: 1px solid #cfe4ec;
+      border-left: 4px solid var(--accent);
       padding: 14px 16px;
-      border-radius: 6px;
+      border-radius: 12px;
       margin-top: 18px;
       font-size: 14px;
-      color: #36506b;
+      color: #2d4d5f;
     }
 
     .image-modal {
@@ -189,7 +310,7 @@
       position: fixed;
       z-index: 9999;
       inset: 0;
-      background: rgba(0, 0, 0, 0.82);
+      background: rgba(15, 25, 35, 0.86);
       justify-content: center;
       align-items: center;
       padding: 30px;
@@ -199,8 +320,8 @@
     .image-modal img {
       max-width: 92vw;
       max-height: 88vh;
-      border-radius: 8px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+      border-radius: 14px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.38);
       background: white;
     }
 
@@ -215,10 +336,33 @@
       line-height: 1;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
+      .workflow {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
       .step-block {
         grid-template-columns: 1fr;
       }
+    }
+
+    @media (max-width: 720px) {
+      .top-nav,
+      .container {
+        max-width: calc(100% - 24px);
+      }
+
+      .nav-tab {
+        flex: 1 1 auto;
+        text-align: center;
+      }
+
+      .hero,
+      .section {
+        padding: 30px 24px;
+      }
+
+      .workflow,
       .image-grid {
         grid-template-columns: 1fr;
       }
