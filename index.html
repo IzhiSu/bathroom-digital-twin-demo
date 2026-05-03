@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Bathroom_DigitalTwin</title>
+    <title>Bathroom Digital Twin | Demo</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     
@@ -97,6 +97,16 @@
       .project-description p {
         font-size: 15px;
       }
+
+      .project-description p,
+      .project-description li,
+      .purpose-card p,
+      .scope-note,
+      .dev-notice {
+        text-align: justify;
+        text-align-last: left;
+        text-justify: inter-word;
+      }
       
       .dev-notice {
         background-color: #e8f4fd; 
@@ -106,6 +116,50 @@
         border-radius: 4px;
         font-size: 14px;
         color: #2c3e50;
+      }
+
+
+
+      .purpose-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin: 24px 0;
+      }
+
+      .purpose-card {
+        background-color: #f8fafc;
+        border: 1px solid #e3e9ef;
+        border-radius: 8px;
+        padding: 18px;
+      }
+
+      .purpose-card h3 {
+        margin-top: 0;
+      }
+
+      .purpose-card p {
+        margin-bottom: 0;
+      }
+
+      .significance-list li {
+        margin-bottom: 12px;
+      }
+
+      .scope-note {
+        background-color: #f8fafc;
+        border: 1px solid #e3e9ef;
+        border-radius: 8px;
+        padding: 14px 16px;
+        margin: 24px 0;
+        font-size: 14px;
+        color: #2c3e50;
+      }
+
+      @media (max-width: 720px) {
+        .purpose-grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       #unity-webgl-logo {
@@ -143,25 +197,45 @@
     </div>
 
     <div class="project-description">
-      <h2>Bathroom Digital Twin: Elderly Fall Risk Assessment</h2>
+      <h2>Project Purpose and Significance</h2>
       <p>
-        This interactive demo showcases a digital twin environment designed to analyze and mitigate indoor risks for older adults. By combining a precise building twin with a dynamic human twin, the system simulates complex fall kinematics within confined spaces.
+        This project develops a bathroom-centered human–building digital twin for interaction-aware indoor safety analysis. The core purpose is to connect three types of evidence in one interpretable environment: the physical bathroom layout, the dynamic human motion process, and the contact or near-contact events between the body and surrounding fixtures.
       </p>
-      
+      <p>
+        Rather than treating the bathroom only as a static 3D model, the project uses the digital twin as a spatial reasoning platform. It supports the analysis of where risky interactions occur, which objects are involved, and how human motion patterns relate to environmental constraints.
+      </p>
+
+      <h3>Why integrate with a DT?</h3>
+      <div class="purpose-card">
+        <p>Digital twin integration allows case materials to become an analyzable environment where human motion, object locations, and contact events can be organized and interpreted together.</p>
+      </div>
+
+      <h3>Why this project matters</h3>
+      <ul class="significance-list">
+        <li><strong>From geometry to interaction:</strong> The project moves beyond simple environment visualization by linking spatial layout with human motion, body–object contact, and safety-relevant event records.</li>
+        <li><strong>From generic fall detection to spatial interpretation:</strong> The system does not only identify that a risky motion may occur; it also helps interpret where it occurs and which bathroom objects may contribute to impact or obstruction.</li>
+        <li><strong>From prototype demonstration to design evidence:</strong> The resulting DT environment can support later comparison of bathroom layouts, fixture arrangements, and intervention strategies before physical renovation or deployment.</li>
+      </ul>
+
+      <div class="scope-note">
+        <strong>Project positioning:</strong> This is an early-stage research prototype. It should be understood as a framework for human–building interaction representation and indoor safety analysis, not as a finished clinical fall-prediction product or a complete smart-home deployment system.
+      </div>
+
       <h3>Key Capabilities</h3>
       <ul>
-        <li><strong>Human-Building Interaction:</strong> Real-time mapping of human posture and fall dynamics against bathroom fixtures.</li>
-        <li><strong>Spatial Risk Analysis:</strong> Evaluates potential impact points (e.g., washbasins, bathtubs) to judge environmental safety.</li>
-        <li><strong>Kinematic Tracking:</strong> Tracks hip velocity, drop thresholds, and first contact timing to generate automated risk scores.</li>
+        <li><strong>Human–building interaction mapping:</strong> Maps human posture and motion trajectories against bathroom fixtures and spatial zones.</li>
+        <li><strong>Spatial risk interpretation:</strong> Identifies potential impact locations and object-level interaction points, such as washbasin, toilet, bathtub, wall, or floor areas.</li>
+        <li><strong>Kinematic and event tracking:</strong> Supports the extraction of motion-related indicators such as body position, velocity, drop process, first-contact timing, and contact sequence.</li>
+        <li><strong>Case-grounded DT construction:</strong> Links field case documentation and environment digitization with a reusable digital twin scene for later analysis.</li>
       </ul>
       
       <h3>How to Use</h3>
       <p>
-        Use the on-screen UI buttons to trigger different motion scenarios. The "Complex Scenario" demonstrates a full sequence from walking to a potential fall, while individual buttons trigger specific motion.
+        Use the on-screen UI buttons to trigger different motion scenarios. The "Complex Scenario" demonstrates a full sequence from walking to a potential fall, while the individual buttons trigger specific motion states.
       </p>
 
       <div class="dev-notice">
-        <strong>🚧 Development Status:</strong> This demo represents an early-stage prototype for phase-based demonstration. Advanced kinematic data extraction, physics-based interactions, and extended analytical features are currently under active development.
+        <strong>Development status:</strong> This demo represents an early-stage prototype for phase-based demonstration. Advanced kinematic data extraction, physics-based interaction, multi-case comparison, and extended analytical features are currently under development.
       </div>
     </div>
 

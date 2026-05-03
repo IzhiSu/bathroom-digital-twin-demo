@@ -375,6 +375,53 @@
         max-width: 80vw;
       }
 
+      .purpose-list {
+        margin: 18px 0 0 0;
+        padding-left: 0;
+        list-style: none;
+        text-align: justify;
+      }
+
+      .purpose-list li {
+        position: relative;
+        margin-bottom: 16px;
+        padding: 16px 18px 16px 44px;
+        background-color: #f8fafc;
+        border: 1px solid #e3e9ef;
+        border-radius: 8px;
+        line-height: 1.7;
+        font-size: 15px;
+        color: #44515c;
+        text-align: justify;
+        text-align-last: left;
+        text-justify: inter-word;
+      }
+
+      .purpose-list li::before {
+        content: "";
+        position: absolute;
+        left: 18px;
+        top: 23px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #2c3e50;
+      }
+
+      .purpose-list strong {
+        display: block;
+        margin-bottom: 5px;
+        color: #2c3e50;
+        text-align: left;
+      }
+
+      .summary-panel p,
+      .summary-panel li {
+        text-align: justify;
+        text-align-last: left;
+        text-justify: inter-word;
+      }
+
       .caption-list,
       .contribution-list,
       .deliverable-list {
@@ -451,6 +498,35 @@
         spatial interpretation, and reconstruction in the Bathroom Digital Twin framework.
         Each case acts as a structured evidence unit connecting field documentation with digital model development.
       </p>
+    </div>
+
+    <div class="summary-panel">
+      <h2 class="section-title">Purpose and Significance of Case Collection</h2>
+
+      <ul class="purpose-list">
+        <li>
+          <strong>Establish a case-grounded basis for the Bathroom Digital Twin.</strong>
+          The purpose of collecting real bathroom cases is to provide empirical support for scene construction,
+          rather than relying only on an idealized or synthetic bathroom layout.
+        </li>
+        <li>
+          <strong>Capture real spatial and contextual conditions.</strong>
+          Real case data provide the spatial and contextual basis for constructing bathroom scenes that reflect
+          actual layouts, fixture arrangements, movement constraints, and safety-relevant environmental details.
+        </li>
+        <li>
+          <strong>Prepare for future AI-assisted risk detection.</strong>
+          As more cases and annotations are accumulated, the case gallery can support future exploration of
+          AI-assisted methods for detecting potential environmental hazards or risk factors, such as constrained
+          movement areas, high-risk fixture arrangements, wet zones, obstacle locations, and possible impact
+          surfaces.
+        </li>
+        <li>
+          <strong>Build a scalable case archive for digital twin development.</strong>
+          The gallery is not only a documentation archive, but also a preparatory dataset structure for future
+          intelligent scene understanding, cross-case comparison, and risk-informed bathroom digital twin development.
+        </li>
+      </ul>
     </div>
 
     <div class="gallery-intro">
