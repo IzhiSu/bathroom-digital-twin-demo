@@ -409,7 +409,7 @@ a{color:inherit;text-decoration:none}
 </head>
 <body>
 
-<div id="password-overlay">
+<div id="password-overlay" style="display:none;">
   <div class="password-box">
     <h2>Protected Access</h2>
     <p>Please enter the password to access this website.</p>
@@ -418,7 +418,7 @@ a{color:inherit;text-decoration:none}
     <div id="password-error" class="password-error"></div>
   </div>
 </div>
-<div id="site-content" style="display:none;">
+<div id="site-content">
 
 
 <div class="topbar">
@@ -599,7 +599,7 @@ a{color:inherit;text-decoration:none}
     document.body.appendChild(script);
   }
 
-  if (sessionStorage.getItem(SESSION_KEY) === "true") unlockSite();
+  unlockSite();
 
   passwordSubmit.addEventListener("click", function () {
     if (passwordInput.value === PASSWORD) {

@@ -368,7 +368,7 @@ td{color:var(--muted)}
 </head>
 <body>
 
-<div id="password-overlay">
+<div id="password-overlay" style="display:none;">
   <div class="password-box">
     <h2>Protected Access</h2>
     <p>Please enter the password to access this website.</p>
@@ -377,7 +377,7 @@ td{color:var(--muted)}
     <div id="password-error" class="password-error"></div>
   </div>
 </div>
-<div id="site-content" style="display:none;">
+<div id="site-content">
 
 
 <div class="topbar">
@@ -594,7 +594,7 @@ td{color:var(--muted)}
     siteContent.style.display = "block";
   }
 
-  if (sessionStorage.getItem(SESSION_KEY) === "true") unlockSite();
+  unlockSite();
 
   passwordSubmit.addEventListener("click", function () {
     if (passwordInput.value === PASSWORD) {
