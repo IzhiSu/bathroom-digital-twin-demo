@@ -584,97 +584,10 @@
           padding: 22px;
         }
       }
-    
-      #password-overlay {
-        position: fixed;
-        inset: 0;
-        z-index: 30000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(15, 25, 35, 0.92);
-        backdrop-filter: blur(6px);
-      }
-
-      .password-box {
-        width: 380px;
-        max-width: calc(100% - 32px);
-        padding: 32px 28px;
-        border-radius: 18px;
-        background: #ffffff;
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
-        text-align: center;
-      }
-
-      .password-box h2 {
-        margin: 0 0 10px 0;
-        color: #243241;
-        font-size: 24px;
-      }
-
-      .password-box p {
-        margin: 0 0 16px 0;
-        color: #5f6f80;
-        font-size: 14px;
-        line-height: 1.6;
-        text-align: center;
-      }
-
-      #password-input {
-        width: 100%;
-        padding: 12px 14px;
-        border: 1px solid #dbe5ed;
-        border-radius: 10px;
-        font-size: 15px;
-        margin-bottom: 12px;
-        outline: none;
-      }
-
-      #password-input:focus {
-        border-color: #2f6f8f;
-        box-shadow: 0 0 0 3px rgba(47, 111, 143, 0.12);
-      }
-
-      #password-submit {
-        width: 100%;
-        padding: 12px 14px;
-        border: none;
-        border-radius: 10px;
-        background: linear-gradient(135deg, #243241, #2f6f8f);
-        color: #ffffff;
-        font-size: 15px;
-        font-weight: 650;
-        cursor: pointer;
-      }
-
-      #password-submit:hover {
-        filter: brightness(1.03);
-      }
-
-      .password-error {
-        min-height: 18px;
-        margin-top: 12px;
-        color: #b3261e;
-        font-size: 13px;
-      }
-
-</style>
+    </style>
   </head>
 
   <body>
-
-    <div id="password-overlay">
-      <div class="password-box">
-        <h2>Protected Access</h2>
-        <p>Please enter the password to access this website.</p>
-        <input type="password" id="password-input" placeholder="Enter password">
-        <button id="password-submit">Enter</button>
-        <div id="password-error" class="password-error"></div>
-      </div>
-    </div>
-
-    <div id="site-content" style="display:none;">
-
     <div class="top-nav">
       <a href="index.html" class="nav-tab link">Bathroom DT Demo</a>
       <a href="interview.html" class="nav-tab link">Case Study</a>
@@ -1214,42 +1127,5 @@
         }
       });
     </script>
-      </div>
-
-    <script>
-      const PASSWORD = "1234";
-      const SESSION_KEY = "bathroom_dt_access_granted";
-
-      const overlay = document.getElementById("password-overlay");
-      const siteContent = document.getElementById("site-content");
-      const passwordInput = document.getElementById("password-input");
-      const passwordSubmit = document.getElementById("password-submit");
-      const passwordError = document.getElementById("password-error");
-
-      function unlockSite() {
-        overlay.style.display = "none";
-        siteContent.style.display = "block";
-      }
-
-      if (sessionStorage.getItem(SESSION_KEY) === "true") {
-        unlockSite();
-      }
-
-      passwordSubmit.addEventListener("click", function () {
-        if (passwordInput.value === PASSWORD) {
-          sessionStorage.setItem(SESSION_KEY, "true");
-          unlockSite();
-        } else {
-          passwordError.textContent = "Incorrect password.";
-        }
-      });
-
-      passwordInput.addEventListener("keydown", function (e) {
-        if (e.key === "Enter") {
-          passwordSubmit.click();
-        }
-      });
-    </script>
-
-</body>
+  </body>
 </html>
