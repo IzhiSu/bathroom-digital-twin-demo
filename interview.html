@@ -3,588 +3,612 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Case Data | Bathroom Digital Twin</title>
+  <title>Case Study | Bathroom Digital Twin</title>
   <style>
-    :root {
-      --bg: #f4f7fb;
-      --panel: #ffffff;
-      --panel-soft: #f8fafc;
-      --ink: #243241;
-      --muted: #5f6f80;
-      --line: #dfe7ef;
-      --line-soft: #edf2f7;
-      --accent: #2f6f8f;
-      --accent-dark: #23495d;
-      --accent-soft: #e8f4f8;
-      --shadow: 0 14px 36px rgba(31, 50, 70, 0.10);
-      --shadow-soft: 0 8px 22px rgba(31, 50, 70, 0.08);
-      --radius-lg: 18px;
-      --radius-md: 12px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      background:
-        radial-gradient(circle at top left, rgba(47, 111, 143, 0.15), transparent 30%),
-        radial-gradient(circle at top right, rgba(44, 62, 80, 0.10), transparent 28%),
-        linear-gradient(180deg, #f6f9fc 0%, var(--bg) 45%, #eef3f8 100%);
-      color: var(--ink);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .top-nav {
-      width: 1080px;
-      max-width: calc(100% - 40px);
-      margin: 24px auto 18px auto;
-      padding: 10px;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid rgba(223, 231, 239, 0.9);
-      border-radius: 16px;
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(10px);
-    }
-
-    .nav-tab {
-      display: inline-block;
-      padding: 10px 18px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 650;
-      transition: 0.2s ease;
-    }
-
-    .nav-tab.link {
-      background-color: #edf3f8;
-      color: #2c3e50;
-      border: 1px solid #dbe5ed;
-    }
-
-    .nav-tab.link:hover {
-      background-color: #e1edf5;
-      transform: translateY(-1px);
-    }
-
-    .nav-tab.active {
-      background: linear-gradient(135deg, #243241, #2f6f8f);
-      color: #ffffff;
-      box-shadow: 0 6px 16px rgba(47, 111, 143, 0.22);
-    }
-
-    .container {
-      width: 1080px;
-      max-width: calc(100% - 40px);
-      margin: 0 auto 70px auto;
-    }
-
-    .hero,
-    .section {
-      background-color: var(--panel);
-      border: 1px solid rgba(223, 231, 239, 0.95);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
-      padding: 38px 42px;
-      margin-bottom: 28px;
-    }
-
-    .hero {
-      margin-top: 14px;
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 252, 255, 0.94)),
-        linear-gradient(135deg, rgba(47,111,143,0.10), transparent);
-    }
-
-    .hero::before {
-      content: "Case workflow for bathroom digital twin construction";
-      display: inline-flex;
-      margin-bottom: 14px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background-color: var(--accent-soft);
-      color: var(--accent-dark);
-      font-size: 13px;
-      font-weight: 750;
-      letter-spacing: 0.02em;
-    }
-
-    h1 {
-      margin: 0;
-      color: var(--ink);
-      font-size: clamp(32px, 4vw, 46px);
-      line-height: 1.12;
-      letter-spacing: -0.03em;
-    }
-
-    h2 {
-      margin: 0 0 18px 0;
-      padding-bottom: 14px;
-      color: var(--ink);
-      border-bottom: 2px solid var(--line-soft);
-      font-size: 25px;
-      letter-spacing: -0.02em;
-    }
-
-    h3 {
-      color: var(--ink);
-      font-size: 19px;
-      margin-bottom: 10px;
-    }
-
-    p,
-    li,
-    td,
-    .note,
-    .caption {
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 15px;
-      text-align: justify;
-      text-align-last: left;
-      text-justify: inter-word;
-    }
-
-    .subtitle {
-      max-width: 780px;
-      margin: 18px 0 0 0;
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .workflow {
-      counter-reset: workflow;
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 26px;
-    }
-
-    .workflow-step {
-      counter-increment: workflow;
-      position: relative;
-      min-height: 112px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      background: linear-gradient(180deg, #ffffff, var(--panel-soft));
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 46px 14px 14px 14px;
-      color: #405163;
-      font-size: 13px;
-      font-weight: 700;
-      text-align: center;
-      line-height: 1.45;
-      box-shadow: 0 4px 14px rgba(31, 50, 70, 0.04);
-    }
-
-    .workflow-step::before {
-      content: counter(workflow);
-      position: absolute;
-      top: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 28px;
-      height: 28px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--accent);
-      color: #ffffff;
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .step-block {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 24px;
-      align-items: start;
-      margin-top: 18px;
-    }
-
-    .step-text ul {
-      padding-left: 20px;
-      margin-bottom: 0;
-    }
-
-    .step-text li,
-    .section > ul li {
-      margin-bottom: 8px;
-    }
-
-    .image-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .image-card {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      overflow: hidden;
-      background: var(--panel-soft);
-      box-shadow: 0 6px 16px rgba(31, 50, 70, 0.06);
-    }
-
-    .image-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-      cursor: pointer;
-      transition: transform 0.2s ease, filter 0.2s ease;
-    }
-
-    .image-card img:hover {
-      transform: scale(1.025);
-      filter: saturate(1.05);
-    }
-
-    .caption {
-      padding: 11px 13px;
-      font-size: 13px;
-      color: #5b6975;
-      line-height: 1.55;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      margin-top: 20px;
-      font-size: 14px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: #ffffff;
-    }
-
-    th,
-    td {
-      border-bottom: 1px solid var(--line);
-      border-right: 1px solid var(--line);
-      padding: 14px;
-      vertical-align: top;
-    }
-
-    tr:last-child td {
-      border-bottom: 0;
-    }
-
-    th:last-child,
-    td:last-child {
-      border-right: 0;
-    }
-
-    th {
-      background: var(--accent-soft);
-      color: var(--accent-dark);
-      font-weight: 750;
-      text-align: left;
-    }
-
-    .note {
-      background-color: var(--accent-soft);
-      border: 1px solid #cfe4ec;
-      border-left: 4px solid var(--accent);
-      padding: 14px 16px;
-      border-radius: 12px;
-      margin-top: 18px;
-      font-size: 14px;
-      color: #2d4d5f;
-    }
-
-    .image-modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      inset: 0;
-      background: rgba(15, 25, 35, 0.86);
-      justify-content: center;
-      align-items: center;
-      padding: 30px;
-      box-sizing: border-box;
-    }
-
-    .image-modal img {
-      max-width: 92vw;
-      max-height: 88vh;
-      border-radius: 14px;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.38);
-      background: white;
-    }
-
-    .image-modal .close-btn {
-      position: absolute;
-      top: 18px;
-      right: 28px;
-      font-size: 36px;
-      color: white;
-      cursor: pointer;
-      font-weight: 300;
-      line-height: 1;
-    }
-
-    @media (max-width: 1000px) {
-      .workflow {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .step-block {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .top-nav,
-      .container {
-        max-width: calc(100% - 24px);
-      }
-
-      .nav-tab {
-        flex: 1 1 auto;
-        text-align: center;
-      }
-
-      .hero,
-      .section {
-        padding: 30px 24px;
-      }
-
-      .workflow,
-      .image-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+:root{
+  --bg:#ffffff;
+  --panel:#ffffff;
+  --ink:#222222;
+  --muted:#6a6a6a;
+  --line:#e7e7e7;
+  --soft:#f7f7f7;
+  --pill:#2f2f2f;
+  --accent:#2f6f8f;
+  --shadow:0 10px 30px rgba(0,0,0,.05);
+  --radius:16px;
+  --maxw:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Arial, Helvetica, sans-serif;
+}
+a{color:inherit;text-decoration:none}
+.page{
+  width:var(--maxw);
+  max-width:calc(100% - 32px);
+  margin:0 auto 56px auto;
+}
+.topbar{
+  width:var(--maxw);
+  max-width:calc(100% - 32px);
+  margin:16px auto 0 auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  font-size:13px;
+  color:#555;
+}
+.topbar-left,.topbar-right{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.topbar a:hover{color:#000}
+.hero{
+  padding:28px 0 18px 0;
+  text-align:center;
+}
+.hero h1{
+  margin:0;
+  font-size:clamp(32px,4.4vw,54px);
+  line-height:1.1;
+  letter-spacing:-0.04em;
+  font-weight:700;
+}
+.hero .subtitle{
+  max-width:880px;
+  margin:16px auto 0 auto;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.6;
+}
+.hero .authors{
+  margin-top:14px;
+  color:#4e89a6;
+  font-size:15px;
+  line-height:1.6;
+}
+.hero .affiliation{
+  margin-top:8px;
+  color:#555;
+  font-size:15px;
+}
+.pill-row{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:20px;
+}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:8px 16px;
+  background:var(--pill);
+  color:#fff;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:700;
+}
+.pill.light{
+  background:#f1f1f1;
+  color:#222;
+  border:1px solid #e1e1e1;
+}
+.section{
+  margin-top:34px;
+}
+.section h2{
+  margin:0 0 14px 0;
+  font-size:28px;
+  text-align:center;
+  letter-spacing:-0.03em;
+}
+.section p.section-intro{
+  max-width:860px;
+  margin:0 auto 20px auto;
+  text-align:center;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.6;
+}
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.info-card{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px;
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+.info-card h3{
+  margin:0 0 8px 0;
+  font-size:18px;
+}
+.info-card p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+}
+.workflow-grid{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:10px;
+  margin-top:18px;
+}
+.workflow-step{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:16px 12px;
+  background:#fff;
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+.workflow-step .num{
+  display:inline-flex;
+  width:28px;
+  height:28px;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:9px;
+  border-radius:50%;
+  background:#222;
+  color:#fff;
+  font-size:13px;
+  font-weight:700;
+}
+.workflow-step strong{
+  display:block;
+  font-size:13.5px;
+  line-height:1.35;
+}
+.media-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:10px;
+}
+.media-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.media-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.media-card{
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+.media-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  display:block;
+  cursor:zoom-in;
+  background:#f3f3f3;
+}
+.media-card img.contain{
+  object-fit:contain;
+  height:220px;
+}
+.caption{
+  padding:10px 10px 12px 10px;
+  font-size:12.5px;
+  line-height:1.45;
+  text-align:center;
+  color:#4f4f4f;
+}
+.figure-note{
+  margin:10px auto 0 auto;
+  max-width:880px;
+  color:#666;
+  font-size:13px;
+  line-height:1.5;
+  text-align:center;
+}
+.table-wrap{
+  overflow-x:auto;
+}
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+th,td{
+  padding:13px 14px;
+  text-align:left;
+  vertical-align:top;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  font-size:14px;
+  line-height:1.55;
+}
+th:last-child,td:last-child{border-right:0}
+tr:last-child td{border-bottom:0}
+th{
+  background:#f7f7f7;
+  color:#333;
+  font-weight:700;
+}
+td{color:var(--muted)}
+.step-block{
+  margin-top:18px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:20px;
+  background:#fff;
+  box-shadow:var(--shadow);
+}
+.step-block h3{
+  margin:0 0 10px 0;
+  font-size:22px;
+}
+.step-block p{
+  margin:0;
+  color:var(--muted);
+  font-size:14.5px;
+  line-height:1.65;
+}
+.step-layout{
+  display:grid;
+  grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
+  gap:18px;
+  align-items:start;
+}
+.short-list{
+  margin:14px 0 0 0;
+  padding-left:18px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.65;
+}
+.short-list li{margin-bottom:4px}
+.note{
+  margin-top:16px;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid #e3ecf1;
+  background:#f5fafc;
+  color:#496476;
+  font-size:13.5px;
+  line-height:1.55;
+}
+.footer-note{
+  margin:34px auto 0 auto;
+  text-align:center;
+  color:#777;
+  font-size:12.5px;
+}
+.image-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(0,0,0,.84);
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+}
+.image-modal.open{display:flex}
+.image-modal img{
+  max-width:92vw;
+  max-height:88vh;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 18px 50px rgba(0,0,0,.32);
+}
+.image-modal-close{
+  position:absolute;
+  top:16px;
+  right:24px;
+  color:#fff;
+  font-size:36px;
+  font-weight:400;
+  cursor:pointer;
+  line-height:1;
+}
+#password-overlay{
+  position:fixed;
+  inset:0;
+  z-index:30000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(18,28,36,.92);
+}
+.password-box{
+  width:360px;
+  max-width:calc(100% - 32px);
+  padding:28px;
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 20px 54px rgba(0,0,0,.25);
+  text-align:center;
+}
+.password-box h2{margin:0 0 10px 0;font-size:24px}
+.password-box p{margin:0 0 14px 0;color:#555;line-height:1.6}
+#password-input{
+  width:100%;
+  padding:12px 13px;
+  border:1px solid #dcdcdc;
+  border-radius:10px;
+  font-size:15px;
+  margin-bottom:12px;
+}
+#password-submit{
+  width:100%;
+  padding:12px 13px;
+  border:0;
+  border-radius:10px;
+  background:#222;
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+}
+.password-error{min-height:18px;margin-top:8px;color:#b3261e;font-size:13px}
+@media (max-width: 960px){
+  .workflow-grid,.media-grid,.media-grid.two,.media-grid.three,.card-grid,.step-layout{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
-  <div class="top-nav">
-    <a href="index.html" class="nav-tab link">Bathroom DT Demo</a>
-    <span class="nav-tab active">Case Study</span>
-    <a href="case-gallery.html" class="nav-tab link">Case Gallery</a>
+<div id="password-overlay">
+  <div class="password-box">
+    <h2>Protected Access</h2>
+    <p>Please enter the password to access this website.</p>
+    <input type="password" id="password-input" placeholder="Enter password">
+    <button id="password-submit">Enter</button>
+    <div id="password-error" class="password-error"></div>
   </div>
+</div>
+<div id="site-content" style="display:none;">
 
-  <div class="container">
 
-    <div class="hero">
-      <h1>Case Data</h1>
-      <p class="subtitle">
-        From field interview to environment digitization for the Bathroom Digital Twin framework
-      </p>
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="index.html">Bathroom DT</a>
+  </div>
+  <div class="topbar-right">
+    <a href="index.html">Demo</a>
+    <strong>Case Study</strong>
+    <a href="case-gallery.html">Case Gallery</a>
+  </div>
+</div>
 
-      <div class="workflow">
-        <div class="workflow-step">Step 1<br>Case selection</div>
-        <div class="workflow-step">Step 2<br>Field interview</div>
-        <div class="workflow-step">Step 3<br>Raw data collection</div>
-        <div class="workflow-step">Step 4<br>Data preprocessing</div>
-        <div class="workflow-step">Step 5<br>Environment digitization</div>
-        <div class="workflow-step">Step 6<br>DT integration</div>
-      </div>
+<main class="page">
+  <section class="hero">
+    <h1>From Field Case to Digital Twin Scene</h1>
+    <div class="authors">Case selection · Field documentation · Spatial digitization · DT integration</div>
+    <div class="affiliation">Bathroom Digital Twin workflow</div>
+    <div class="pill-row">
+      <a class="pill" href="#workflow">Workflow</a>
+      <a class="pill" href="#evidence">Evidence Matrix</a>
+      <a class="pill" href="#steps">Detailed Steps</a>
+      <a class="pill light" href="case-gallery.html">Case Gallery</a>
     </div>
+  </section>
 
-    <div class="section">
-      <h2>Overview</h2>
-      <p>
-        This page documents the step-by-step workflow used to collect, organize, and transform interview-based bathroom case data into a structured digital representation. The purpose of this process was not only to record a real bathroom environment, but also to generate a case-grounded spatial basis for the Bathroom Digital Twin framework.
-      </p>
-      <p>
-        The workflow combined field interview, contextual observation, image documentation, recording materials, and environment digitization outputs such as point cloud data and digital models.
-      </p>
+  <section class="section" id="workflow">
+    <h2>Workflow</h2>
+    <p class="section-intro">A traceable pipeline from real bathroom documentation to digital twin scene construction.</p>
+    <div class="workflow-grid">
+      <div class="workflow-step"><span class="num">1</span><strong>Case selection</strong></div>
+      <div class="workflow-step"><span class="num">2</span><strong>Field interview</strong></div>
+      <div class="workflow-step"><span class="num">3</span><strong>Raw data</strong></div>
+      <div class="workflow-step"><span class="num">4</span><strong>Preprocessing</strong></div>
+      <div class="workflow-step"><span class="num">5</span><strong>Digitization</strong></div>
+      <div class="workflow-step"><span class="num">6</span><strong>DT integration</strong></div>
     </div>
+  </section>
 
-    <div class="section">
-      <h2>Step 1. Case selection and interview setup</h2>
-      <div class="step-text">
-        <p>
-          A real bathroom case was selected as the basis for early-stage investigation and prototype development. This step focused on defining the target environment, preparing the interview scope, and clarifying what kinds of data were needed for later digitization and safety-oriented analysis.
-        </p>
-        <ul>
-          <li>Selected a real bathroom environment as a representative case.</li>
-          <li>Defined interview goals around bathroom use, inconvenience, and safety-relevant interaction.</li>
-          <li>Planned data collection to include environmental images, recordings, and spatial reconstruction materials.</li>
-        </ul>
-      </div>
+  <section class="section">
+    <h2>Visual Summary</h2>
+    <div class="media-grid">
+      <div class="media-card"><img src="assets/step2_env_photo_1.png" alt="Field documentation" onclick="openImage(this)"><div class="caption">(a) Field documentation</div></div>
+      <div class="media-card"><img src="assets/step4_file_structure.png" alt="Data organization" onclick="openImage(this)"><div class="caption">(b) Data organization</div></div>
+      <div class="media-card"><img src="assets/step5_pointcloud.png" alt="Point cloud" onclick="openImage(this)"><div class="caption">(c) Spatial capture</div></div>
+      <div class="media-card"><img src="assets/step5_model.png" alt="Digital model" onclick="openImage(this)"><div class="caption">(d) Digital model</div></div>
     </div>
+    <div class="figure-note">Case data are organized as spatial and contextual evidence for downstream digital twin scene construction.</div>
+  </section>
 
-    <div class="section">
-      <h2>Step 2. Field interview and contextual documentation</h2>
-      <div class="step-block">
-        <div class="step-text">
-          <p>
-            Field interview and contextual observation were conducted to understand how the bathroom was used in practice and which spatial features might be related to difficulty, discomfort, or potential safety risk.
-          </p>
-          <ul>
-            <li>Conducted interview-based inquiry on bathroom use and experience.</li>
-            <li>Recorded observations related to movement constraints, wet zones, and object accessibility.</li>
-            <li>Captured environmental photographs to preserve fixture arrangement and local spatial conditions.</li>
-          </ul>
-          <div class="note">
-            This stage focused on linking lived experience with observable environmental conditions, rather than treating the bathroom only as a geometric model.
-          </div>
-        </div>
-        <div class="image-grid">
-          <div class="image-card">
-            <img src="assets/step2_env_photo_1.png" alt="Bathroom photo 1" onclick="openImage(this.src)">
-            <div class="caption">Contextual photo documenting fixture layout and circulation space.</div>
-          </div>
-          <div class="image-card">
-            <img src="assets/step2_env_photo_2.jpg" alt="Bathroom photo 2" onclick="openImage(this.src)">
-            <div class="caption">Contextual photo documenting fixture layout and circulation space.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Step 3. Raw data collection</h2>
-      <p>
-        Multiple forms of raw data were collected to document the case from complementary perspectives. These materials formed the source dataset for later organization, interpretation, and environment digitization.
-      </p>
-
+  <section class="section" id="evidence">
+    <h2>Evidence Matrix</h2>
+    <p class="section-intro">Each data source has a specific role in the DT workflow.</p>
+    <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>Data type</th>
-            <th>Example content</th>
-            <th>Role in workflow</th>
+            <th>Evidence type</th>
+            <th>Example material</th>
+            <th>Role in DT workflow</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Image data</td>
-            <td>Bathroom overview photos, local fixture images, wet-area documentation</td>
-            <td>Visual documentation of the real environment and safety-relevant details</td>
+            <td>Interview and observation</td>
+            <td>Use experience, inconvenience, movement constraints, safety concerns</td>
+            <td>Scenario framing and risk-context interpretation</td>
           </tr>
           <tr>
-            <td>Recording data</td>
-            <td>Interview audio or contextual verbal records</td>
-            <td>Support interpretation of how the space is used and perceived</td>
+            <td>Contextual images</td>
+            <td>Bathroom overview, fixtures, wet areas, circulation space</td>
+            <td>Object placement and environmental validation</td>
           </tr>
           <tr>
             <td>Point cloud / scan data</td>
-            <td>Spatial capture of the bathroom geometry</td>
-            <td>Provide the basis for reconstruction and digitization</td>
+            <td>Spatial capture of geometry and fixture arrangement</td>
+            <td>Reconstruction, scale estimation, and spatial modeling</td>
           </tr>
           <tr>
-            <td>Model-related files</td>
-            <td>Intermediate geometric or semantic reconstruction outputs</td>
-            <td>Bridge raw spatial data to DT-ready scene modeling</td>
+            <td>Digital model outputs</td>
+            <td>Reconstructed model and Unity-ready scene</td>
+            <td>Prototype testing and interaction-aware interpretation</td>
           </tr>
         </tbody>
       </table>
     </div>
+  </section>
 
-    <div class="section">
-      <h2>Step 4. Data preprocessing and organization</h2>
-      <div class="step-block">
-        <div class="step-text">
-          <p>
-            After collection, the case materials were reorganized and processed according to data type. This step aimed to make the raw materials traceable, interpretable, and usable for downstream scene reconstruction.
-          </p>
-          <ul>
-            <li>Organized files into structured folders such as Image, Recording, and Building_Model.</li>
-            <li>Screened representative photographs and associated them with specific environmental features.</li>
-            <li>Indexed recordings and extracted key contextual information for later interpretation.</li>
-            <li>Prepared scan-derived data for subsequent cleaning, alignment, and reconstruction.</li>
-          </ul>
-        </div>
-        <div class="image-grid">
-          <div class="image-card">
-            <img src="assets/step4_file_structure.png" alt="File structure" onclick="openImage(this.src)">
-            <div class="caption">Structured organization of case materials by data type.</div>
-          </div>
-          <div class="image-card">
-            <img src="assets/step4_preprocess.png" alt="Preprocessing" onclick="openImage(this.src)">
-            <div class="caption">Example of preprocessing data before environment digitization.</div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <section class="section" id="steps">
+    <h2>Detailed Steps</h2>
 
-    <div class="section">
-      <h2>Step 5. Environment digitization</h2>
-      <div class="step-block">
-        <div class="step-text">
-          <p>
-            The collected spatial data were further transformed into digital representations of the bathroom environment. This stage focused on converting the real scene into a structured digital basis that could later support scene understanding and interaction-aware analysis.
-          </p>
-          <ul>
-            <li>Prepared point cloud or scan-derived geometry for spatial reconstruction.</li>
-            <li>Generated digital model representations of the bathroom environment.</li>
-            <li>Identified key safety-relevant objects such as toilet, washbasin, shower/bathtub area, and other fixtures.</li>
-            <li>Built a scene representation suitable for later integration into the Bathroom DT prototype.</li>
-          </ul>
-        </div>
-        <div class="image-grid">
-          <div class="image-card">
-            <img src="assets/step5_pointcloud.png" alt="Point cloud" onclick="openImage(this.src)">
-            <div class="caption">Point cloud or scan-derived representation of the bathroom environment.</div>
-          </div>
-          <div class="image-card">
-            <img src="assets/step5_model.png" alt="Digital model" onclick="openImage(this.src)">
-            <div class="caption">Digitized bathroom model used as the basis for later DT scene construction.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Step 6. Integration into the Bathroom Digital Twin</h2>
-      <div class="step-text">
-        <p>
-          The processed case data and digitized scene were used to support the construction of a bathroom-centered digital twin environment. At this stage, the focus was on creating a structured spatial basis for later human–building interaction mapping, scenario playback, and risk-oriented analysis.
-        </p>
-        <ul>
-          <li>Used digitized bathroom layout as the scene basis for the DT prototype.</li>
-          <li>Linked object-level spatial information to safety-relevant semantics.</li>
-          <li>Prepared the case for later behavior simulation, contact-event analysis, and fall-risk interpretation.</li>
-        </ul>
-        <div class="note">
-          <strong>Role in the DT workflow:</strong> this step links case documentation and environment digitization to the Bathroom DT prototype, enabling later behavior playback, contact-event interpretation, and risk-oriented human–building interaction analysis.
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Key outputs of this workflow</h2>
-      <ul>
-        <li>A documented real bathroom case with contextual interview materials</li>
-        <li>Structured environmental image records</li>
-        <li>Organized recording and observation materials</li>
-        <li>Point cloud / scan-derived spatial data</li>
-        <li>A digitized bathroom model for DT-oriented scene construction</li>
+    <div class="step-block">
+      <h3>Step 1. Case selection and interview setup</h3>
+      <p>A real bathroom case is selected as the basis for early-stage investigation and prototype development.</p>
+      <ul class="short-list">
+        <li>Define the target bathroom environment.</li>
+        <li>Prepare the interview scope.</li>
+        <li>Clarify required materials for later digitization.</li>
       </ul>
     </div>
 
-  </div>
+    <div class="step-block">
+      <div class="step-layout">
+        <div>
+          <h3>Step 2. Field interview and contextual documentation</h3>
+          <p>Interview and observation are used to connect lived use experience with observable bathroom conditions.</p>
+          <ul class="short-list">
+            <li>Record bathroom use and perceived inconvenience.</li>
+            <li>Observe movement constraints and wet-area conditions.</li>
+            <li>Capture visual records of fixtures and spatial context.</li>
+          </ul>
+        </div>
+        <div class="media-grid two">
+          <div class="media-card"><img src="assets/step2_env_photo_1.png" alt="Bathroom contextual photo" onclick="openImage(this)"><div class="caption">Contextual photo</div></div>
+          <div class="media-card"><img src="assets/step2_env_photo_2.jpg" alt="Bathroom contextual photo" onclick="openImage(this)"><div class="caption">Local condition</div></div>
+        </div>
+      </div>
+    </div>
 
-  <div id="imageModal" class="image-modal" onclick="closeImage()">
-    <span class="close-btn" onclick="closeImage()">&times;</span>
-    <img id="modalImage" src="" alt="Expanded image">
-  </div>
+    <div class="step-block">
+      <h3>Step 3. Raw data collection</h3>
+      <p>Image records, interview materials, scan data, and model-related files are collected as complementary evidence.</p>
+      <ul class="short-list">
+        <li>Image data for spatial and contextual documentation.</li>
+        <li>Recording data for interpretation of use and perception.</li>
+        <li>Scan-derived data for geometric reconstruction.</li>
+      </ul>
+    </div>
 
-  <script>
-    function openImage(src) {
-      document.getElementById("modalImage").src = src;
-      document.getElementById("imageModal").style.display = "flex";
+    <div class="step-block">
+      <div class="step-layout">
+        <div>
+          <h3>Step 4. Data preprocessing and organization</h3>
+          <p>Raw materials are organized by data type to support traceable reconstruction and interpretation.</p>
+          <ul class="short-list">
+            <li>Organize Image, Recording, and Building_Model folders.</li>
+            <li>Select representative field images.</li>
+            <li>Prepare spatial data for cleaning and reconstruction.</li>
+          </ul>
+        </div>
+        <div class="media-grid two">
+          <div class="media-card"><img src="assets/step4_file_structure.png" alt="File structure" onclick="openImage(this)"><div class="caption">File structure</div></div>
+          <div class="media-card"><img src="assets/step4_preprocess.png" alt="Preprocessing" onclick="openImage(this)"><div class="caption">Preprocessing</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-layout">
+        <div>
+          <h3>Step 5. Environment digitization</h3>
+          <p>Spatial evidence is transformed into digital representations of the bathroom environment.</p>
+          <ul class="short-list">
+            <li>Prepare point cloud or scan-derived geometry.</li>
+            <li>Generate digital model representations.</li>
+            <li>Identify safety-relevant objects and zones.</li>
+          </ul>
+        </div>
+        <div class="media-grid two">
+          <div class="media-card"><img src="assets/step5_pointcloud.png" alt="Point cloud" onclick="openImage(this)"><div class="caption">Point cloud</div></div>
+          <div class="media-card"><img src="assets/step5_model.png" alt="Digital model" onclick="openImage(this)"><div class="caption">Digital model</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <h3>Step 6. Integration into the Bathroom Digital Twin</h3>
+      <p>Processed case data are integrated into a DT-ready scene for later behavior playback, contact-event analysis, and safety-oriented interpretation.</p>
+      <ul class="short-list">
+        <li>Use the digitized bathroom layout as the scene basis.</li>
+        <li>Link object-level spatial information to safety semantics.</li>
+        <li>Prepare the case for interaction-aware analysis.</li>
+      </ul>
+      <div class="note"><strong>Output:</strong> a traceable case package linking field evidence, spatial digitization, and digital twin scene construction.</div>
+    </div>
+  </section>
+</main>
+
+<div id="image-modal" class="image-modal">
+  <span id="image-modal-close" class="image-modal-close">&times;</span>
+  <img id="image-modal-img" src="" alt="">
+</div>
+</div>
+
+<script>
+  function openImage(img) {
+    document.getElementById('image-modal').classList.add('open');
+    document.getElementById('image-modal-img').src = img.src;
+    document.getElementById('image-modal-img').alt = img.alt || '';
+  }
+  document.getElementById('image-modal-close').addEventListener('click', function() {
+    document.getElementById('image-modal').classList.remove('open');
+  });
+  document.getElementById('image-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') document.getElementById('image-modal').classList.remove('open');
+  });
+</script>
+
+
+<script>
+  const PASSWORD = "1234";
+  const SESSION_KEY = "bathroom_dt_access_granted";
+  const overlay = document.getElementById("password-overlay");
+  const siteContent = document.getElementById("site-content");
+  const passwordInput = document.getElementById("password-input");
+  const passwordSubmit = document.getElementById("password-submit");
+  const passwordError = document.getElementById("password-error");
+
+  function unlockSite() {
+    overlay.style.display = "none";
+    siteContent.style.display = "block";
+  }
+
+  if (sessionStorage.getItem(SESSION_KEY) === "true") unlockSite();
+
+  passwordSubmit.addEventListener("click", function () {
+    if (passwordInput.value === PASSWORD) {
+      sessionStorage.setItem(SESSION_KEY, "true");
+      unlockSite();
+    } else {
+      passwordError.textContent = "Incorrect password.";
     }
+  });
 
-    function closeImage() {
-      document.getElementById("imageModal").style.display = "none";
-    }
-  </script>
+  passwordInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") passwordSubmit.click();
+  });
+</script>
+
 </body>
 </html>
