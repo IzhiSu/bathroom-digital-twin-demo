@@ -20,7 +20,7 @@
   --accent:#2f6f8f;
   --shadow:0 10px 30px rgba(0,0,0,.05);
   --radius:16px;
-  --maxw:1280px;
+  --maxw:1120px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -387,21 +387,16 @@ a{color:inherit;text-decoration:none}
   top: 0 !important;
   left: 0 !important;
   transform: none !important;
-  width: 100% !important;
+  width: 960px !important;
   max-width: 100% !important;
-  margin: 0;
+  margin: 0 auto;
   border-radius: 14px;
   overflow: hidden;
   background:#222;
   border:1px solid var(--line);
   box-shadow:var(--shadow);
 }
-#unity-canvas{
-  width:100% !important;
-  height:auto !important;
-  max-width:100%;
-  display:block;
-}
+#unity-canvas{max-width:100%}
 #unity-webgl-logo{
   background-image:url('footer-logo.png') !important;
   width:140px !important;
@@ -409,103 +404,6 @@ a{color:inherit;text-decoration:none}
   background-size:contain !important;
   background-repeat:no-repeat !important;
   background-position:left center !important;
-}
-.demo-shell{
-  display:grid;
-  grid-template-columns:minmax(680px, 1fr) 360px;
-  gap:22px;
-  align-items:start;
-  margin-top:22px;
-}
-.unity-panel{min-width:0;}
-.external-dashboard{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  min-width:0;
-}
-.dt-card{
-  background:rgba(255,255,255,.94);
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:16px;
-  padding:15px 16px;
-  box-shadow:0 12px 30px rgba(0,0,0,.07);
-}
-.dt-card h3{
-  margin:0 0 10px 0;
-  font-size:16px;
-  line-height:1.25;
-  letter-spacing:-.01em;
-}
-#dt-status-text{
-  margin:0;
-  white-space:pre-wrap;
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:13px;
-  line-height:1.45;
-  color:#333;
-}
-.contact-list{
-  max-height:210px;
-  overflow-y:auto;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  padding-right:2px;
-}
-.contact-item{
-  padding:7px 8px;
-  border-radius:9px;
-  background:#f5f5f5;
-  color:#333;
-  font-size:12.5px;
-  line-height:1.35;
-}
-.contact-item strong{font-weight:700;color:#222;}
-.heatmap-box{
-  position:relative;
-  width:100%;
-  aspect-ratio:16/9;
-  overflow:hidden;
-  border-radius:12px;
-  border:1px solid #e5e5e5;
-  background:#f4f6f8;
-}
-.heatmap-box img,
-.heatmap-box canvas{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-}
-.heatmap-box img{object-fit:fill;}
-#heatmap-canvas{pointer-events:none;}
-.heatmap-legend{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-top:10px;
-  font-size:12px;
-  color:#666;
-}
-.legend-bar{
-  flex:1;
-  height:8px;
-  border-radius:999px;
-  background:linear-gradient(90deg, rgba(255,230,0,.35), rgba(255,150,0,.65), rgba(255,0,0,.9));
-}
-.dashboard-hint{
-  margin-top:8px;
-  color:#777;
-  font-size:12px;
-  line-height:1.45;
-}
-@media (max-width: 1180px){
-  .demo-shell{grid-template-columns:1fr;}
-  .external-dashboard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
-}
-@media (max-width: 860px){
-  .external-dashboard{display:flex;}
 }
   </style>
 </head>
@@ -576,52 +474,19 @@ a{color:inherit;text-decoration:none}
 
   <section class="section" id="demo">
     <h2>Interactive Demo</h2>
-    <p class="section-intro">Trigger different scenarios in Unity and inspect synchronized digital-twin evidence on the dashboard.</p>
-
-    <div class="demo-shell">
-      <div class="unity-panel">
-        <div id="unity-container" class="unity-desktop">
-          <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
-          <div id="unity-loading-bar">
-            <div id="unity-logo"></div>
-            <div id="unity-progress-bar-empty"><div id="unity-progress-bar-full"></div></div>
-          </div>
-          <div id="unity-warning"> </div>
-          <div id="unity-footer">
-            <div id="unity-webgl-logo"></div>
-            <div id="unity-fullscreen-button"></div>
-            <div id="unity-build-title">Bathroom_DigitalTwin</div>
-          </div>
-        </div>
+    <p class="section-intro">Trigger different scenarios and inspect the prototype in the browser.</p>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty"><div id="unity-progress-bar-full"></div></div>
       </div>
-
-      <aside class="external-dashboard" aria-label="Digital twin dashboard">
-        <section class="dt-card">
-          <h3>Digital Twin Status</h3>
-          <pre id="dt-status-text">Waiting for Unity data...</pre>
-          <div class="dashboard-hint">Live status, kinematic indicators, proximity, and first-contact evidence.</div>
-        </section>
-
-        <section class="dt-card">
-          <h3>Contact Events</h3>
-          <div id="dt-contact-events" class="contact-list">
-            <div class="contact-item">Waiting for contact events...</div>
-          </div>
-        </section>
-
-        <section class="dt-card">
-          <h3>Contact Heatmap</h3>
-          <div class="heatmap-box">
-            <img id="heatmap-floorplan" src="images/case4-floorplan.png" alt="Bathroom floor plan">
-            <canvas id="heatmap-canvas"></canvas>
-          </div>
-          <div class="heatmap-legend">
-            <span>Low</span>
-            <div class="legend-bar" aria-hidden="true"></div>
-            <span>High</span>
-          </div>
-        </section>
-      </aside>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">Bathroom_DigitalTwin</div>
+      </div>
     </div>
   </section>
 </main>
@@ -649,123 +514,6 @@ a{color:inherit;text-decoration:none}
   });
 </script>
 
-
-<script>
-  (function () {
-    const statusText = document.getElementById("dt-status-text");
-    const contactList = document.getElementById("dt-contact-events");
-    const heatCanvas = document.getElementById("heatmap-canvas");
-    const heatBox = document.querySelector(".heatmap-box");
-    const heatCtx = heatCanvas ? heatCanvas.getContext("2d") : null;
-    const heatCells = new Map();
-
-    let heatRenderQueued = false;
-
-    function stripRichText(text) {
-      return String(text || "").replace(/<[^>]*>/g, "");
-    }
-
-    function resizeHeatCanvas() {
-      if (!heatCanvas || !heatBox) return;
-      const rect = heatBox.getBoundingClientRect();
-      heatCanvas.width = Math.max(1, Math.floor(rect.width));
-      heatCanvas.height = Math.max(1, Math.floor(rect.height));
-      renderHeatmap();
-    }
-
-    function queueHeatmapRender() {
-      if (heatRenderQueued) return;
-      heatRenderQueued = true;
-      requestAnimationFrame(function () {
-        heatRenderQueued = false;
-        renderHeatmap();
-      });
-    }
-
-    function renderHeatmap() {
-      if (!heatCtx || !heatCanvas.width || !heatCanvas.height) return;
-      heatCtx.clearRect(0, 0, heatCanvas.width, heatCanvas.height);
-      for (const cell of heatCells.values()) {
-        drawHeatPoint(cell.x, cell.y, cell.count);
-      }
-    }
-
-    function drawHeatPoint(xNorm, yNorm, count) {
-      const x = xNorm * heatCanvas.width;
-      const y = (1 - yNorm) * heatCanvas.height;
-      const t = Math.min(1, Math.max(0, Number(count || 1) / 4));
-      const radius = 18 + 38 * t;
-
-      const gradient = heatCtx.createRadialGradient(x, y, 0, x, y, radius);
-      if (t < 0.35) {
-        gradient.addColorStop(0, "rgba(255, 220, 0, 0.50)");
-        gradient.addColorStop(1, "rgba(255, 220, 0, 0)");
-      } else if (t < 0.70) {
-        gradient.addColorStop(0, "rgba(255, 130, 0, 0.65)");
-        gradient.addColorStop(1, "rgba(255, 130, 0, 0)");
-      } else {
-        gradient.addColorStop(0, "rgba(255, 0, 0, 0.78)");
-        gradient.addColorStop(1, "rgba(255, 0, 0, 0)");
-      }
-
-      heatCtx.fillStyle = gradient;
-      heatCtx.beginPath();
-      heatCtx.arc(x, y, radius, 0, Math.PI * 2);
-      heatCtx.fill();
-    }
-
-    window.DT_updateDashboard = function (data) {
-      if (!statusText) return;
-      statusText.textContent = stripRichText(data && data.text ? data.text : "");
-    };
-
-    window.DT_addContactEvent = function (data) {
-      if (!contactList || !data) return;
-
-      if (contactList.children.length === 1 && contactList.textContent.includes("Waiting for contact events")) {
-        contactList.innerHTML = "";
-      }
-
-      const item = document.createElement("div");
-      item.className = "contact-item";
-      const time = Number(data.time || 0).toFixed(1);
-      const eventType = data.eventType || "Event";
-      const bodyPart = data.bodyPart || "body";
-      const objectId = data.objectId || "object";
-      item.innerHTML = `<strong>${time}s</strong> [${eventType}] ${bodyPart} → ${objectId}`;
-
-      contactList.appendChild(item);
-      while (contactList.children.length > 50) {
-        contactList.removeChild(contactList.firstChild);
-      }
-      contactList.scrollTop = contactList.scrollHeight;
-    };
-
-    window.DT_updateHeatmapCell = function (data) {
-      if (!data) return;
-      const x = Number(data.xNorm);
-      const y = Number(data.yNorm);
-      const count = Number(data.count || 1);
-      if (!Number.isFinite(x) || !Number.isFinite(y)) return;
-
-      const key = `${x.toFixed(3)}_${y.toFixed(3)}`;
-      heatCells.set(key, { x, y, count });
-      queueHeatmapRender();
-    };
-
-    window.DT_clearExternalUI = function () {
-      if (contactList) {
-        contactList.innerHTML = '<div class="contact-item">Waiting for contact events...</div>';
-      }
-      heatCells.clear();
-      renderHeatmap();
-    };
-
-    window.addEventListener("resize", resizeHeatCanvas);
-    window.addEventListener("load", resizeHeatCanvas);
-    setTimeout(resizeHeatCanvas, 300);
-  })();
-</script>
 
 <script>
   const PASSWORD = "1234";
@@ -812,11 +560,11 @@ a{color:inherit;text-decoration:none}
     }
 
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/web_file.loader.js";
+    var loaderUrl = buildUrl + "/webbuild.loader.js";
     var config = {
-      dataUrl: buildUrl + "/web_file.data",
-      frameworkUrl: buildUrl + "/web_file.framework.js",
-      codeUrl: buildUrl + "/web_file.wasm",
+      dataUrl: buildUrl + "/webbuild.data",
+      frameworkUrl: buildUrl + "/webbuild.framework.js",
+      codeUrl: buildUrl + "/webbuild.wasm",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "DefaultCompany",
       productName: "Bathroom_DigitalTwin",
@@ -832,8 +580,8 @@ a{color:inherit;text-decoration:none}
       container.className = "unity-mobile";
       canvas.className = "unity-mobile";
     } else {
-      canvas.style.width = "100%";
-      canvas.style.height = "auto";
+      canvas.style.width = "960px";
+      canvas.style.height = "600px";
     }
 
     loadingBar.style.display = "block";
