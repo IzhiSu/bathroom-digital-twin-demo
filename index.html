@@ -406,37 +406,34 @@ a{color:inherit;text-decoration:none}
   background-position:left center !important;
 }
 
-/* External synchronized dashboard layout: Unity on top, synchronized evidence panels below */
+/* External synchronized dashboard layout */
 .demo-shell{
-  display:flex;
-  flex-direction:column;
-  gap:22px;
-  max-width:1280px;
+  display:grid;
+  grid-template-columns:minmax(640px, 840px) 340px;
+  gap:24px;
+  align-items:start;
+  max-width:1200px;
   margin:22px auto 0 auto;
 }
-.unity-panel{width:100%;min-width:0;}
+.unity-panel{min-width:0;}
 .external-dashboard{
-  display:grid;
-  grid-template-columns:repeat(3, minmax(0, 1fr));
-  gap:18px;
-  align-items:stretch;
-  width:100%;
-}
-.dt-card{
-  background:rgba(255,255,255,.96);
-  border:1px solid rgba(0,0,0,.08);
-  border-radius:16px;
-  padding:16px;
-  box-shadow:0 12px 28px rgba(0,0,0,.07);
-  min-width:0;
-  height:320px;
-  min-height:320px;
-  max-height:320px;
-  overflow:hidden;
   display:flex;
   flex-direction:column;
+  gap:14px;
 }
-.dt-card h3{margin:0 0 10px 0;font-size:16px;line-height:1.25;font-weight:700;}
+.dt-card{
+  background:rgba(255,255,255,.94);
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:16px;
+  padding:14px;
+  box-shadow:0 12px 28px rgba(0,0,0,.07);
+}
+.dt-card h3{
+  margin:0 0 10px 0;
+  font-size:16px;
+  line-height:1.25;
+  font-weight:700;
+}
 #dt-status-text{
   margin:0;
   white-space:pre-wrap;
@@ -444,23 +441,23 @@ a{color:inherit;text-decoration:none}
   font-size:12.5px;
   line-height:1.45;
   color:#242424;
-  flex:1;
-  min-height:0;
-  overflow-y:auto;
 }
-.dt-card-note{margin:10px 0 0 0;color:#666;font-size:12px;line-height:1.45;flex-shrink:0;}
+.dt-card-note{
+  margin:10px 0 0 0;
+  color:#666;
+  font-size:12px;
+  line-height:1.45;
+}
 .contact-list{
-  flex:1;
-  min-height:0;
-  max-height:100%;
+  max-height:210px;
   overflow-y:auto;
-  overflow-x:hidden;
   display:flex;
   flex-direction:column;
   gap:6px;
   padding-right:4px;
 }
-.contact-placeholder,.contact-item{
+.contact-placeholder,
+.contact-item{
   padding:7px 8px;
   border-radius:8px;
   background:rgba(0,0,0,.045);
@@ -471,26 +468,74 @@ a{color:inherit;text-decoration:none}
 .heatmap-box{
   position:relative;
   width:100%;
-  flex:1;
-  min-height:0;
-  aspect-ratio:auto;
+  aspect-ratio:16/9;
   overflow:hidden;
   border:1px solid rgba(0,0,0,.08);
   border-radius:10px;
   background:#f4f4f4;
 }
-.heatmap-box img,.heatmap-box canvas{position:absolute;inset:0;width:100%;height:100%;}
+.heatmap-box img,
+.heatmap-box canvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
 .heatmap-box img{object-fit:contain;background:#fff;}
-.heatmap-legend{margin-top:10px;display:flex;align-items:center;gap:8px;color:#666;font-size:12px;}
-.legend-bar{height:8px;flex:1;border-radius:999px;background:linear-gradient(90deg, rgba(255,225,80,.45), rgba(255,135,40,.70), rgba(255,0,0,.90));}
-#unity-container.unity-desktop{width:100% !important;max-width:1200px !important;margin:0 auto;}
-#unity-canvas{width:100% !important;height:auto !important;aspect-ratio:16/10;display:block;}
-@media (max-width:1180px){
-  .demo-shell{max-width:calc(100% - 24px);}
-  .external-dashboard{grid-template-columns:1fr;}
+.heatmap-legend{
+  margin-top:10px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#666;
+  font-size:12px;
+}
+.legend-bar{
+  height:8px;
+  flex:1;
+  border-radius:999px;
+  background:linear-gradient(90deg, rgba(255,225,80,.45), rgba(255,135,40,.70), rgba(255,0,0,.90));
+}
+#unity-container.unity-desktop{
+  width:100% !important;
+  max-width:840px !important;
+}
+#unity-canvas{
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio: 16 / 10;
+  display:block;
+}
+@media (max-width: 1100px){
+  .demo-shell{grid-template-columns:1fr;}
+  .external-dashboard{display:grid;grid-template-columns:1fr;}
   #unity-container.unity-desktop{max-width:960px !important;}
 }
 
+/* Supported demo function section */
+.supported-demo{
+  max-width:1120px;
+  margin:34px auto 0 auto;
+}
+.supported-demo-card{
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.supported-demo-card img{
+  display:block;
+  width:100%;
+  height:auto;
+  background:#fff;
+}
+.supported-demo .section-intro{
+  margin-bottom:18px;
+}
+@media (max-width: 760px){
+  .supported-demo-card{border-radius:14px;}
+}
 
   </style>
 </head>
@@ -597,7 +642,7 @@ a{color:inherit;text-decoration:none}
         <section class="dt-card">
           <h3>Contact Heatmap</h3>
           <div class="heatmap-box">
-            <img id="heatmap-floorplan" src="images/case2-floorplan.jpeg" alt="Bathroom floor plan">
+            <img id="heatmap-floorplan" src="images/case4-floorplan.png" alt="Bathroom floor plan">
             <canvas id="heatmap-canvas"></canvas>
           </div>
           <div class="heatmap-legend"><span>Low</span><div class="legend-bar"></div><span>High</span></div>
@@ -605,6 +650,15 @@ a{color:inherit;text-decoration:none}
       </aside>
     </div>
   </section>
+
+  <section class="section supported-demo" id="supported-functions">
+    <h2>Our Demo Supports</h2>
+    <p class="section-intro">The prototype demonstrates skeleton-based human motion analysis, posture interpretation, and movement evidence within a bathroom-centered digital twin environment.</p>
+    <div class="supported-demo-card">
+      <img src="assets/function.png" alt="Human motion posture and movement analysis function card" onclick="openImage(this)">
+    </div>
+  </section>
+
 </main>
 
 <div id="image-modal" class="image-modal">
@@ -641,9 +695,6 @@ a{color:inherit;text-decoration:none}
   const heatBox = document.querySelector(".heatmap-box");
   const heatCtx = heatCanvas ? heatCanvas.getContext("2d") : null;
   const heatCells = new Map();
-  let heatmapRenderPending = false;
-  window.__dtDashboardReady = true;
-  console.log("[DT Dashboard] receiver functions registered.");
 
   function stripUnityRichText(text) {
     return String(text || "").replace(/<[^>]*>/g, "").trim();
@@ -680,7 +731,7 @@ a{color:inherit;text-decoration:none}
     item.textContent = `${time}s [${eventType}] ${bodyPart} → ${objectId}`;
 
     dtContactList.appendChild(item);
-    while (dtContactList.children.length > 30) {
+    while (dtContactList.children.length > 60) {
       dtContactList.removeChild(dtContactList.firstChild);
     }
     dtContactList.scrollTop = dtContactList.scrollHeight;
@@ -695,23 +746,14 @@ a{color:inherit;text-decoration:none}
 
     const key = `${x.toFixed(3)}_${y.toFixed(3)}`;
     heatCells.set(key, { x, y, count });
-    requestHeatmapRender();
+    renderHeatmap();
   };
-
-  function requestHeatmapRender() {
-    if (heatmapRenderPending) return;
-    heatmapRenderPending = true;
-    requestAnimationFrame(() => {
-      heatmapRenderPending = false;
-      renderHeatmap();
-    });
-  }
 
   window.DT_clearExternalUI = function() {
     if (dtStatusText) dtStatusText.textContent = "Waiting for Unity data...";
     if (dtContactList) dtContactList.innerHTML = '<div class="contact-placeholder">Waiting for contact events...</div>';
     heatCells.clear();
-    requestHeatmapRender();
+    renderHeatmap();
   };
 
   function renderHeatmap() {
@@ -781,12 +823,11 @@ a{color:inherit;text-decoration:none}
     }
 
     var buildUrl = "Build";
-    var unityBuildVersion = "webbuild_bottom_dashboard_v2";
-    var loaderUrl = buildUrl + "/webbuild.loader.js?v=" + unityBuildVersion;
+    var loaderUrl = buildUrl + "/webbuild.loader.js";
     var config = {
-      dataUrl: buildUrl + "/webbuild.data?v=" + unityBuildVersion,
-      frameworkUrl: buildUrl + "/webbuild.framework.js?v=" + unityBuildVersion,
-      codeUrl: buildUrl + "/webbuild.wasm?v=" + unityBuildVersion,
+      dataUrl: buildUrl + "/webbuild.data",
+      frameworkUrl: buildUrl + "/webbuild.framework.js",
+      codeUrl: buildUrl + "/webbuild.wasm",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "DefaultCompany",
       productName: "Bathroom_DigitalTwin",
